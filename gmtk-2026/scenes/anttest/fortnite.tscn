@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://dccv0bwiyp83d"]
+
+[node name="BoxContainer" type="BoxContainer" unique_id=1486757572]
+offset_right = 105.0
+offset_bottom = 71.0
+
+[node name="Label" type="Label" parent="." unique_id=1626390947]
+layout_mode = 2
+text = "fortnite"
