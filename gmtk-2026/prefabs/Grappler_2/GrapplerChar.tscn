@@ -6,12 +6,16 @@
 [ext_resource type="Script" uid="uid://dvxegqp0cf77n" path="res://addons/ropesim/RopeInteraction.gd" id="4_xnab7"]
 [ext_resource type="Texture2D" uid="uid://criwv6nuivcxy" path="res://addons/ropesim/rope_examples/icon.svg" id="5_a3smu"]
 
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_8wjqr"]
+friction = 5.0
+rough = true
+bounce = 5.0
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rupg3"]
 size = Vector2(128, 128)
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_p8h6e"]
 rough = true
-bounce = 1.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gu001"]
 size = Vector2(64, 64)
@@ -35,7 +39,10 @@ initial_offset = 1.0
 
 [node name="GrapplerBase" type="RigidBody2D" parent="SliderBase/GrooveJoint2D" unique_id=506491648]
 rotation = 1.5707964
+mass = 2.0
+physics_material_override = SubResource("PhysicsMaterial_8wjqr")
 lock_rotation = true
+linear_damp = 0.2
 script = ExtResource("1_8wjqr")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SliderBase/GrooveJoint2D/GrapplerBase" unique_id=1155125891]
@@ -70,8 +77,8 @@ rope = NodePath("..")
 position = Vector2(0, 360)
 mass = 5.0
 physics_material_override = SubResource("PhysicsMaterial_p8h6e")
-linear_damp = 2.0
-angular_damp = 5.0
+linear_damp = 3.0
+angular_damp = 3.0
 metadata/_edit_group_ = true
 
 [node name="GrabberCollision" type="CollisionShape2D" parent="SliderBase/GrabberHand" unique_id=1279730044]

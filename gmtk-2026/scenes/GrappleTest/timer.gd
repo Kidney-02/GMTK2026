@@ -1,7 +1,9 @@
 extends Label
 
 @export var total_time:float = 7.
-
+@export var required_items: int = 5
+var held_items: int = 0
+@onready var end_screen = $"End Screen"
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -17,7 +19,7 @@ func _process(delta: float) -> void:
 			
 			
 			## Game Over script here
-			$"../End Screen".visible = true
+			end_screen.visible = true
 	
 	
 	var time = format_time(total_time)
@@ -30,12 +32,20 @@ func _process(delta: float) -> void:
 		display_time = "%02d : %02d : %0.3f" 
 		display_time = display_time % [time["minutes"] , time["seconds"] , time["miliseconds"]]
 	elif total_time <= 0.:
-		display_time = "GAME OVER" 
+		if held_items >= required_items:
+			display_time = "WIN"
+		else: 
+			display_time = "GAME OVER" 
 	
 	self.set_text(display_time)
 	
 	pass
 
+
+func _input(event: InputEvent) -> void:
+	if Input.is_action_pressed("escape"):
+		end_screen.visible = not end_screen.visible
+	pass
 
 ###############################################################################
 func format_time(_seconds:float) -> Dictionary:
@@ -54,4 +64,30 @@ func format_time(_seconds:float) -> Dictionary:
 	}
 
 	return _time
+
+
+###############################################################################
+
+func _on_rocket_body_entered(body: Node2D) -> void:
+	if body is Item:
+		print ("aenter")
+		held_items += 1
+	else:
+		pass
+		#print(body.get_class())
+		#print("b")
 	
+	pass # Replace with function body.
+
+
+func _on_rocket_body_exited(body: Node2D) -> void:
+	if body is Item:
+		print ("left")
+		held_items -= 1
+	else:
+		pass
+	
+	pass # Replace with function body.
+	
+	
+	pass # Replace with function body.

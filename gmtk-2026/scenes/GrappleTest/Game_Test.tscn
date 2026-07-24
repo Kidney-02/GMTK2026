@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bghswbhaf6w0h" path="res://scenes/GrappleTest/timer.gd" id="1_1kyfl"]
 [ext_resource type="PackedScene" uid="uid://b13m6f1j1jgn1" path="res://prefabs/Grappler_2/GrapplerChar.tscn" id="1_obsje"]
-[ext_resource type="PackedScene" uid="uid://bb7eva0hruvcd" path="res://prefabs/Item/item_base.tscn" id="2_p8h6e"]
+[ext_resource type="PackedScene" uid="uid://de40n2qglmnir" path="res://prefabs/Item/item_base.tscn" id="2_p8h6e"]
 [ext_resource type="PackedScene" uid="uid://cprrgbv6wg1ff" path="res://prefabs/Item/item_box.tscn" id="3_j2146"]
 [ext_resource type="PackedScene" uid="uid://b4juiuivaquop" path="res://scenes/Menus/end_screen.tscn" id="5_rteqm"]
 
@@ -12,18 +12,10 @@ size = Vector2(1302, 45)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_obsje"]
 size = Vector2(30, 1563)
 
-[node name="GameTest" type="Node2D" unique_id=1722283576]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rumqe"]
+size = Vector2(480, 546)
 
-[node name="Timer" type="Label" parent="." unique_id=1868185383]
-offset_left = 516.0
-offset_top = 16.0
-offset_right = 633.0
-offset_bottom = 85.0
-theme_override_font_sizes/font_size = 50
-text = "TIME"
-horizontal_alignment = 1
-vertical_alignment = 1
-script = ExtResource("1_1kyfl")
+[node name="GameTest" type="Node2D" unique_id=1722283576]
 
 [node name="Player" parent="." unique_id=1376512836 instance=ExtResource("1_obsje")]
 position = Vector2(133, 116)
@@ -49,15 +41,75 @@ shape = SubResource("RectangleShape2D_obsje")
 position = Vector2(540, 523)
 shape = SubResource("RectangleShape2D_obsje")
 
-[node name="Item" parent="." unique_id=2035982705 instance=ExtResource("2_p8h6e")]
-position = Vector2(1018, 517)
+[node name="Rocket" type="Area2D" parent="." unique_id=1351953269]
+position = Vector2(170, 542)
+collision_layer = 0
+collision_mask = 4
 
-[node name="Item2" parent="." unique_id=69859513 instance=ExtResource("3_j2146")]
-position = Vector2(895, 584)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Rocket" unique_id=397813613]
+position = Vector2(101, -114)
+shape = SubResource("RectangleShape2D_rumqe")
+debug_color = Color(0.820062, 0.40349212, 0, 0.41960785)
 
-[node name="End Screen" parent="." unique_id=1094206676 instance=ExtResource("5_rteqm")]
+[node name="Items" type="Node2D" parent="." unique_id=874714478]
+position = Vector2(1001, 522)
+
+[node name="Item4" parent="Items" unique_id=887846603 instance=ExtResource("3_j2146")]
+position = Vector2(53, 102)
+collision_mask = 1
+
+[node name="Item2" parent="Items" unique_id=1766477443 instance=ExtResource("3_j2146")]
+position = Vector2(-191, 113)
+collision_mask = 1
+
+[node name="Item7" parent="Items" unique_id=2108725107 instance=ExtResource("3_j2146")]
+position = Vector2(186, -106)
+collision_mask = 1
+
+[node name="Item8" parent="Items" unique_id=470540917 instance=ExtResource("3_j2146")]
+position = Vector2(-58, -95)
+collision_mask = 1
+
+[node name="Item11" parent="Items" unique_id=247006316 instance=ExtResource("3_j2146")]
+position = Vector2(70, -104)
+collision_mask = 1
+
+[node name="Item12" parent="Items" unique_id=1910231831 instance=ExtResource("3_j2146")]
+position = Vector2(-343, 23)
+collision_mask = 1
+
+[node name="Item" parent="Items" unique_id=2035982705 instance=ExtResource("2_p8h6e")]
+position = Vector2(-291, -183)
+
+[node name="Item3" parent="Items" unique_id=1215738426 instance=ExtResource("2_p8h6e")]
+position = Vector2(201, 108)
+
+[node name="Item5" parent="Items" unique_id=566388650 instance=ExtResource("2_p8h6e")]
+position = Vector2(-148, -182)
+
+[node name="Item6" parent="Items" unique_id=497184250 instance=ExtResource("2_p8h6e")]
+position = Vector2(85, -257)
+
+[node name="Item9" parent="Items" unique_id=245006701 instance=ExtResource("2_p8h6e")]
+position = Vector2(-46, -227)
+
+[node name="Timer" type="Label" parent="." unique_id=1868185383]
+offset_left = 516.0
+offset_top = 16.0
+offset_right = 633.0
+offset_bottom = 85.0
+theme_override_font_sizes/font_size = 50
+text = "TIME"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("1_1kyfl")
+total_time = 45.0
+
+[node name="End Screen" parent="Timer" unique_id=1094206676 instance=ExtResource("5_rteqm")]
 visible = false
-offset_left = 584.0
-offset_top = 354.0
-offset_right = 584.0
-offset_bottom = 354.0
+layout_mode = 1
+offset_top = 322.0
+offset_bottom = 322.0
+
+[connection signal="body_entered" from="Rocket" to="Timer" method="_on_rocket_body_entered"]
+[connection signal="body_exited" from="Rocket" to="Timer" method="_on_rocket_body_exited"]

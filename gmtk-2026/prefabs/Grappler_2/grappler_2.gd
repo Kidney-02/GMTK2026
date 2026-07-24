@@ -9,7 +9,7 @@ extends RigidBody2D
 
 @export var max_speed:float 			= 800.
 @export var speed_up:float 				= 50.
-@export var speed_down:float 			= 30.
+@export var speed_down:float 			= 800.
 
 var input_threshold:float 				= 0.01
 
@@ -35,6 +35,8 @@ func _ready() -> void:
 	
 	self.apply_central_force(Vector2(20, 0))
 	update_rope_length(0.)
+	
+	
 	
 	pass # Replace with function body.
 
@@ -97,7 +99,7 @@ func update_rope_length(_delta:float):
 		var dir = sign(diff)
 		rope_length += lowering_speed * _delta if dir < 0 else -1 * raising_speed * _delta
 
-		print(diff)
+		#print(diff)
 		
 	else: 
 		rope_length = rope_length_target
@@ -115,7 +117,7 @@ func grab_release():
 	
 	if grabbing:
 		var overlapping = grab_area.get_overlapping_bodies()
-		print(overlapping)
+		#print(overlapping)
 		if overlapping:
 			var item = overlapping[0]
 			#item.lock_rotation = true

@@ -1,17 +1,16 @@
-[gd_scene format=3 uid="uid://bb7eva0hruvcd"]
+[gd_scene format=3 uid="uid://de40n2qglmnir"]
 
+[ext_resource type="PackedScene" uid="uid://bb7eva0hruvcd" path="res://prefabs/Item/item_class.tscn" id="1_dpe1e"]
 [ext_resource type="Texture2D" uid="uid://d3uxwrgolkkvp" path="res://art/temp/Circle.png" id="1_m5vn8"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_81myi"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_yyb84"]
 radius = 39.115215
 
-[node name="Item" type="RigidBody2D" unique_id=2035982705]
-collision_layer = 7
-mass = 0.5
+[node name="Item" unique_id=2035982705 instance=ExtResource("1_dpe1e")]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1916493465]
-shape = SubResource("CircleShape2D_81myi")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="0" unique_id=2109391994]
+shape = SubResource("CircleShape2D_yyb84")
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1062116414]
+[node name="Sprite2D" type="Sprite2D" parent="." index="1" unique_id=868096040]
 scale = Vector2(0.155, 0.155)
 texture = ExtResource("1_m5vn8")
