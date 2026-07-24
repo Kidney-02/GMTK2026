@@ -1,0 +1,162 @@
+[gd_scene format=3 uid="uid://b4juiuivaquop"]
+
+[ext_resource type="Texture2D" uid="uid://dhcwybhoxgwhe" path="res://icon.svg" id="1_06gyh"]
+[ext_resource type="Script" uid="uid://c0lmkovxyfokn" path="res://scenes/Menus/end_screen.gd" id="1_afkq0"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_afkq0"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+bg_color = Color(0.23137255, 0.101960786, 0.101960786, 0.6)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+
+[node name="End Screen" type="Control" unique_id=1094206676]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_afkq0")
+
+[node name="Panel" type="Panel" parent="." unique_id=311118454]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_afkq0")
+
+[node name="Restart" type="TextureButton" parent="." unique_id=635934224]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -157.0
+offset_top = -202.0
+offset_right = 143.0
+offset_bottom = -74.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset_ratio = Vector2(0.5, 0.5)
+texture_normal = ExtResource("1_06gyh")
+texture_pressed = ExtResource("1_06gyh")
+texture_hover = ExtResource("1_06gyh")
+texture_disabled = ExtResource("1_06gyh")
+texture_focused = ExtResource("1_06gyh")
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="Restart" unique_id=1178098116]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_constants/outline_size = 57
+theme_override_font_sizes/font_size = 83
+text = "Restart"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MainMenu" type="TextureButton" parent="." unique_id=1834959488]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -150.0
+offset_top = -37.5
+offset_right = 150.0
+offset_bottom = 37.5
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset_ratio = Vector2(0.5, 0.5)
+texture_normal = ExtResource("1_06gyh")
+texture_pressed = ExtResource("1_06gyh")
+texture_hover = ExtResource("1_06gyh")
+texture_disabled = ExtResource("1_06gyh")
+texture_focused = ExtResource("1_06gyh")
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="MainMenu" unique_id=26978234]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_constants/outline_size = 57
+theme_override_font_sizes/font_size = 83
+text = "MainMenu"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Quit" type="TextureButton" parent="." unique_id=769269608]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 155.0
+offset_top = 145.0
+offset_right = 367.0
+offset_bottom = 273.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset_ratio = Vector2(0.5, 0.5)
+texture_normal = ExtResource("1_06gyh")
+texture_pressed = ExtResource("1_06gyh")
+texture_hover = ExtResource("1_06gyh")
+texture_disabled = ExtResource("1_06gyh")
+texture_focused = ExtResource("1_06gyh")
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="Quit" unique_id=1295475184]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -99.5
+offset_top = -57.0
+offset_right = 99.5
+offset_bottom = 57.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 50
+theme_override_font_sizes/font_size = 59
+text = "QUIT"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="pressed" from="Restart" to="." method="_on_restart_pressed"]
+[connection signal="pressed" from="MainMenu" to="." method="_on_main_menu_pressed"]
+[connection signal="pressed" from="Quit" to="." method="_on_quit_pressed"]

@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://bb7eva0hruvcd"]
+
+[ext_resource type="Texture2D" uid="uid://d3uxwrgolkkvp" path="res://art/temp/Circle.png" id="1_m5vn8"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_81myi"]
+radius = 39.115215
+
+[node name="Item" type="RigidBody2D" unique_id=2035982705]
+collision_layer = 7
+mass = 0.5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1916493465]
+shape = SubResource("CircleShape2D_81myi")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1062116414]
+scale = Vector2(0.155, 0.155)
+texture = ExtResource("1_m5vn8")

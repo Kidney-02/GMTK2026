@@ -1,0 +1,117 @@
+[gd_scene format=3 uid="uid://gex7loccj42u"]
+
+[ext_resource type="PackedScene" uid="uid://beuu34gtk2nhm" path="res://addons/ropesim/rope_examples/scripts/rope_with_rigidbody.tscn" id="1_aij5x"]
+[ext_resource type="Texture2D" uid="uid://criwv6nuivcxy" path="res://addons/ropesim/rope_examples/icon.svg" id="3_xivx8"]
+[ext_resource type="Script" uid="uid://b2shq2gjd4fvt" path="res://addons/ropesim/Rope.gd" id="4_dlqny"]
+[ext_resource type="Script" uid="uid://y8nntt6dh711" path="res://addons/ropesim/rope_examples/scripts/character_body_2d.gd" id="5_du4tb"]
+[ext_resource type="Script" uid="uid://dvxegqp0cf77n" path="res://addons/ropesim/RopeInteraction.gd" id="5_flc2u"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6gqpg"]
+size = Vector2(64, 64)
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_owpk6"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ob30w"]
+size = Vector2(64, 64)
+
+[node name="Node2D" type="Node2D" unique_id=554490051]
+
+[node name="rope_with_body" parent="." unique_id=763794217 instance=ExtResource("1_aij5x")]
+position = Vector2(408, 1)
+
+[node name="rope_with_body2" parent="." unique_id=2036847051 instance=ExtResource("1_aij5x")]
+position = Vector2(499, -3)
+
+[node name="rope_with_body3" parent="." unique_id=1584384200 instance=ExtResource("1_aij5x")]
+position = Vector2(589, 0)
+
+[node name="Player" type="CharacterBody2D" parent="." unique_id=1347889354]
+process_physics_priority = -100
+position = Vector2(227, 253)
+collision_mask = 0
+motion_mode = 1
+script = ExtResource("5_du4tb")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player" unique_id=2056492910]
+shape = SubResource("RectangleShape2D_6gqpg")
+
+[node name="Icon" type="Sprite2D" parent="Player" unique_id=1050618997]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("3_xivx8")
+
+[node name="Label2" type="Label" parent="Player" unique_id=1633756554]
+offset_left = -46.0
+offset_top = 36.0
+offset_right = 42.0
+offset_bottom = 59.0
+text = "WSAD"
+horizontal_alignment = 1
+
+[node name="Rope" type="Node2D" parent="Player" unique_id=1179516719]
+script = ExtResource("4_dlqny")
+num_segments = 15
+rope_length = 250.0
+gravity = 75.0
+num_constraint_iterations = 20
+
+[node name="RopeInteraction" type="Node" parent="Player/Rope" unique_id=735300964 node_paths=PackedStringArray("target_node", "input_node_override")]
+script = ExtResource("5_flc2u")
+disable_in_editor = true
+position_update_mode = 0
+target_node = NodePath("../../../hanging_rigidbody/attachment_marker/rope_end")
+input_node_override = NodePath("../../../hanging_rigidbody/attachment_marker")
+
+[node name="Label" type="Label" parent="." unique_id=1816595920]
+offset_left = 10.0
+offset_top = 381.0
+offset_right = 1186.0
+offset_bottom = 638.0
+text = "A PinJoint2D fixates the RigidBody to the rope.
+As it only works on two physics bodies, a CharacterBody (rope_end) is used as proxy for the location on the rope.
+The softness property on the PointJoint2D can be tuned to make the RigidBodies less erratic on collisions.
+
+A RopeInteraction handles the mutual interaction between the RigidBody and the rope.
+It snaps the rope to the position indicated by the attachment_marker node and updates the rope_end+PinJoint2D to constrain the RigidBody to the rope.
+To specifically target the marker, the RopeInteraction makes use of the input_override_node property.
+
+The PinJoint2D, the rope_end and the attachment_marker nodes should be aligned initially, otherwise it may lead to undesired behavior.
+The disable_in_editor property of RopeInteraction is useful to prevent accidantelly messing up the layout."
+
+[node name="Label2" type="Label" parent="." unique_id=1998638366]
+offset_left = 10.0
+offset_top = 8.0
+offset_right = 1146.0
+offset_bottom = 109.0
+text = "Basic example on how to attach a RigidBody to a rope and enabling corresponding physics reactions.
+
+Keep in mind that Godot's internal physics and the rope simulation of this plugin are completely different approaches.
+Combining them is a hack that will never produce perfect results and is not particularily intuitive."
+autowrap_mode = 3
+
+[node name="hanging_rigidbody" type="RigidBody2D" parent="." unique_id=2089613917]
+position = Vector2(227, 534)
+mass = 5.0
+physics_material_override = SubResource("PhysicsMaterial_owpk6")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hanging_rigidbody" unique_id=1461717939]
+shape = SubResource("RectangleShape2D_ob30w")
+
+[node name="Icon" type="Sprite2D" parent="hanging_rigidbody" unique_id=1268895767]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("3_xivx8")
+
+[node name="attachment_marker" type="Marker2D" parent="hanging_rigidbody" unique_id=850115903]
+position = Vector2(0, -31)
+metadata/_edit_group_ = true
+
+[node name="rope_end" type="CharacterBody2D" parent="hanging_rigidbody/attachment_marker" unique_id=751251932]
+collision_layer = 0
+collision_mask = 0
+motion_mode = 1
+
+[node name="PinJoint2D" type="PinJoint2D" parent="hanging_rigidbody/attachment_marker/rope_end" unique_id=85715938]
+node_a = NodePath("../../..")
+node_b = NodePath("..")
+softness = 0.05

@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://cprrgbv6wg1ff"]
+
+[ext_resource type="Texture2D" uid="uid://c814cmeun775p" path="res://art/temp/Box.png" id="1_20v0f"]
+[ext_resource type="PackedScene" uid="uid://bb7eva0hruvcd" path="res://prefabs/Item/item_base.tscn" id="1_dgmwu"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_a8kta"]
+size = Vector2(78, 78)
+
+[node name="Item" unique_id=2035982705 instance=ExtResource("1_dgmwu")]
+
+[node name="CollisionShape2D" parent="." index="0" unique_id=1916493465]
+shape = SubResource("RectangleShape2D_a8kta")
+
+[node name="Sprite2D" parent="." index="1" unique_id=1062116414]
+texture = ExtResource("1_20v0f")

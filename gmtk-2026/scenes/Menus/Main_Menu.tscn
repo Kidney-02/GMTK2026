@@ -1,0 +1,120 @@
+[gd_scene format=3 uid="uid://pcq8rppqacnt"]
+
+[ext_resource type="Script" uid="uid://bswoidoniuabx" path="res://scenes/Menus/main_menu.gd" id="1_xu3ct"]
+[ext_resource type="Texture2D" uid="uid://dhcwybhoxgwhe" path="res://icon.svg" id="2_x5no6"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_y2rfe"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+bg_color = Color(0.27058825, 0.5411765, 0.101960786, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+
+[node name="MainMenu" type="Control" unique_id=1271213195]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_xu3ct")
+
+[node name="Panel" type="Panel" parent="." unique_id=701381661]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_y2rfe")
+
+[node name="Play" type="TextureButton" parent="." unique_id=1771834017]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -150.0
+offset_top = -37.5
+offset_right = 150.0
+offset_bottom = 37.5
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset_ratio = Vector2(0.5, 0.5)
+texture_normal = ExtResource("2_x5no6")
+texture_pressed = ExtResource("2_x5no6")
+texture_hover = ExtResource("2_x5no6")
+texture_disabled = ExtResource("2_x5no6")
+texture_focused = ExtResource("2_x5no6")
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="Play" unique_id=1367726726]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_constants/outline_size = 57
+theme_override_font_sizes/font_size = 83
+text = "PLAY"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Quit" type="TextureButton" parent="." unique_id=2114917251]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 155.0
+offset_top = 145.0
+offset_right = 367.0
+offset_bottom = 273.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset_ratio = Vector2(0.5, 0.5)
+texture_normal = ExtResource("2_x5no6")
+texture_pressed = ExtResource("2_x5no6")
+texture_hover = ExtResource("2_x5no6")
+texture_disabled = ExtResource("2_x5no6")
+texture_focused = ExtResource("2_x5no6")
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="Quit" unique_id=1439995913]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -99.5
+offset_top = -57.0
+offset_right = 99.5
+offset_bottom = 57.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 50
+theme_override_font_sizes/font_size = 59
+text = "QUIT"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="pressed" from="Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="Quit" to="." method="_on_quit_pressed"]

@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://dioirhw807enl"]
+
+[ext_resource type="Script" uid="uid://b75xi8uuekmys" path="res://prefabs/Grappler/Grappler.gd" id="1_4ujmx"]
+[ext_resource type="Texture2D" uid="uid://dhcwybhoxgwhe" path="res://icon.svg" id="2_5p888"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_81myi"]
+size = Vector2(128, 128)
+
+[node name="GrapplerBase" type="CharacterBody2D" unique_id=23475601]
+motion_mode = 1
+script = ExtResource("1_4ujmx")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=716218516]
+texture = ExtResource("2_5p888")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=20161704]
+shape = SubResource("RectangleShape2D_81myi")

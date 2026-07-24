@@ -1,0 +1,63 @@
+[gd_scene format=3 uid="uid://4dciwpcgsrd3"]
+
+[ext_resource type="Script" uid="uid://bghswbhaf6w0h" path="res://scenes/GrappleTest/timer.gd" id="1_1kyfl"]
+[ext_resource type="PackedScene" uid="uid://b13m6f1j1jgn1" path="res://prefabs/Grappler_2/GrapplerChar.tscn" id="1_obsje"]
+[ext_resource type="PackedScene" uid="uid://bb7eva0hruvcd" path="res://prefabs/Item/item_base.tscn" id="2_p8h6e"]
+[ext_resource type="PackedScene" uid="uid://cprrgbv6wg1ff" path="res://prefabs/Item/item_box.tscn" id="3_j2146"]
+[ext_resource type="PackedScene" uid="uid://b4juiuivaquop" path="res://scenes/Menus/end_screen.tscn" id="5_rteqm"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_81myi"]
+size = Vector2(1302, 45)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_obsje"]
+size = Vector2(30, 1563)
+
+[node name="GameTest" type="Node2D" unique_id=1722283576]
+
+[node name="Timer" type="Label" parent="." unique_id=1868185383]
+offset_left = 516.0
+offset_top = 16.0
+offset_right = 633.0
+offset_bottom = 85.0
+theme_override_font_sizes/font_size = 50
+text = "TIME"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("1_1kyfl")
+
+[node name="Player" parent="." unique_id=1376512836 instance=ExtResource("1_obsje")]
+position = Vector2(133, 116)
+
+[node name="Level Collision" type="StaticBody2D" parent="." unique_id=717369642]
+position = Vector2(0, 725)
+collision_layer = 3
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Level Collision" unique_id=462254040]
+position = Vector2(641, 12.5)
+shape = SubResource("RectangleShape2D_81myi")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Level Collision" unique_id=893119700]
+position = Vector2(2, -769)
+shape = SubResource("RectangleShape2D_obsje")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Level Collision" unique_id=1438579887]
+position = Vector2(1280, -759)
+shape = SubResource("RectangleShape2D_obsje")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="Level Collision" unique_id=1570104385]
+position = Vector2(540, 523)
+shape = SubResource("RectangleShape2D_obsje")
+
+[node name="Item" parent="." unique_id=2035982705 instance=ExtResource("2_p8h6e")]
+position = Vector2(1018, 517)
+
+[node name="Item2" parent="." unique_id=69859513 instance=ExtResource("3_j2146")]
+position = Vector2(895, 584)
+
+[node name="End Screen" parent="." unique_id=1094206676 instance=ExtResource("5_rteqm")]
+visible = false
+offset_left = 584.0
+offset_top = 354.0
+offset_right = 584.0
+offset_bottom = 354.0

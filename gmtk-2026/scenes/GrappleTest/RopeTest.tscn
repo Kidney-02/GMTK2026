@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://bmw2espn8t7gv"]
+
+[ext_resource type="PackedScene" uid="uid://ckxsrhdjfs4bf" path="res://prefabs/Rope/rope.tscn" id="1_qxqip"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_81myi"]
+radius = 92.26592
+
+[node name="Node2D" type="Node2D" unique_id=1233019686]
+
+[node name="Rope" parent="." unique_id=1962694218 instance=ExtResource("1_qxqip")]
+position = Vector2(647, 191)
+
+[node name="RigidBody2D" type="RigidBody2D" parent="." unique_id=43140042]
+position = Vector2(1755, 548)
+gravity_scale = 0.0
+linear_velocity = Vector2(-420, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D" unique_id=549458068]
+shape = SubResource("CircleShape2D_81myi")
