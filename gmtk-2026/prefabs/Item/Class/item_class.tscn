@@ -4,7 +4,6 @@
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_81myi"]
 friction = 2.0
-rough = true
 
 [node name="Item" type="RigidBody2D" unique_id=2035982705]
 collision_layer = 4

@@ -8,14 +8,16 @@ content_margin_left = 0.0
 content_margin_top = 0.0
 content_margin_right = 0.0
 content_margin_bottom = 0.0
-bg_color = Color(0.23137255, 0.101960786, 0.101960786, 0.6)
+bg_color = Color(0.2652, 0.52, 0.26944664, 0.6)
 corner_radius_top_left = 3
 corner_radius_top_right = 3
 corner_radius_bottom_right = 3
 corner_radius_bottom_left = 3
 corner_detail = 5
 
-[node name="End Screen" type="Control" unique_id=1094206676]
+[node name="CanvasLayer" type="CanvasLayer" unique_id=1842237333]
+
+[node name="End Screen" type="Control" parent="." unique_id=1094206676]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -24,7 +26,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_afkq0")
 
-[node name="Panel" type="Panel" parent="." unique_id=311118454]
+[node name="Panel" type="Panel" parent="End Screen" unique_id=311118454]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -33,7 +35,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_afkq0")
 
-[node name="Restart" type="TextureButton" parent="." unique_id=635934224]
+[node name="Restart" type="TextureButton" parent="End Screen" unique_id=635934224]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -54,7 +56,7 @@ texture_disabled = ExtResource("1_06gyh")
 texture_focused = ExtResource("1_06gyh")
 stretch_mode = 0
 
-[node name="Label" type="Label" parent="Restart" unique_id=1178098116]
+[node name="Label" type="Label" parent="End Screen/Restart" unique_id=1178098116]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -74,7 +76,7 @@ text = "Restart"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="MainMenu" type="TextureButton" parent="." unique_id=1834959488]
+[node name="MainMenu" type="TextureButton" parent="End Screen" unique_id=1834959488]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -82,9 +84,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -150.0
-offset_top = -37.5
+offset_top = -64.0
 offset_right = 150.0
-offset_bottom = 37.5
+offset_bottom = 64.0
 grow_horizontal = 2
 grow_vertical = 2
 pivot_offset_ratio = Vector2(0.5, 0.5)
@@ -95,7 +97,7 @@ texture_disabled = ExtResource("1_06gyh")
 texture_focused = ExtResource("1_06gyh")
 stretch_mode = 0
 
-[node name="Label" type="Label" parent="MainMenu" unique_id=26978234]
+[node name="Label" type="Label" parent="End Screen/MainMenu" unique_id=26978234]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -115,7 +117,7 @@ text = "MainMenu"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Quit" type="TextureButton" parent="." unique_id=769269608]
+[node name="Quit" type="TextureButton" parent="End Screen" unique_id=769269608]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -136,7 +138,7 @@ texture_disabled = ExtResource("1_06gyh")
 texture_focused = ExtResource("1_06gyh")
 stretch_mode = 0
 
-[node name="Label" type="Label" parent="Quit" unique_id=1295475184]
+[node name="Label" type="Label" parent="End Screen/Quit" unique_id=1295475184]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -157,6 +159,6 @@ text = "QUIT"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[connection signal="pressed" from="Restart" to="." method="_on_restart_pressed"]
-[connection signal="pressed" from="MainMenu" to="." method="_on_main_menu_pressed"]
-[connection signal="pressed" from="Quit" to="." method="_on_quit_pressed"]
+[connection signal="pressed" from="End Screen/Restart" to="End Screen" method="_on_restart_pressed"]
+[connection signal="pressed" from="End Screen/MainMenu" to="End Screen" method="_on_main_menu_pressed"]
+[connection signal="pressed" from="End Screen/Quit" to="End Screen" method="_on_quit_pressed"]

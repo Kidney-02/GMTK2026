@@ -1,0 +1,79 @@
+[gd_scene format=3 uid="uid://bu8wl1haemth0"]
+
+[ext_resource type="Script" uid="uid://dsiwjiyiqn1w7" path="res://prefabs/Rocket/rocket.gd" id="1_bsurk"]
+[ext_resource type="Texture2D" uid="uid://buxdoljtn66xc" path="res://art/Rocket/Rocket_Interior.tres" id="1_fmaue"]
+[ext_resource type="Texture2D" uid="uid://kp5ine6kjcr5" path="res://art/Rocket/Rocket_Body.tres" id="2_ln1sd"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_81myi"]
+size = Vector2(952, 138)
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_suxht"]
+friction = 0.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_q37hs"]
+size = Vector2(953, 1226)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bsurk"]
+size = Vector2(115.35742, 486.76947)
+
+[node name="Rocket" type="Area2D" unique_id=577757229]
+collision_layer = 0
+collision_mask = 4
+script = ExtResource("1_bsurk")
+
+[node name="RocketInterior" type="Sprite2D" parent="." unique_id=1433058553]
+z_index = -5
+position = Vector2(6.5, -1180.9998)
+scale = Vector2(1.0206523, 1.0229788)
+texture = ExtResource("1_fmaue")
+
+[node name="RocketSurface" type="Sprite2D" parent="." unique_id=485727785]
+z_index = 5
+position = Vector2(1, -882)
+texture = ExtResource("2_ln1sd")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." unique_id=84129737]
+polygon = PackedVector2Array(-447, -616, -460, -1544, -400, -1768, 397, -1755, 464, -1529, 461, -607)
+
+[node name="Rocket_Collision" type="StaticBody2D" parent="." unique_id=1250527253]
+collision_layer = 7
+collision_mask = 0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Rocket_Collision" unique_id=992657615]
+polygon = PackedVector2Array(-333, 8, -333, -176, -474, -175, -503, -1164, -584, -1356, -479, -1749, -389, -1748, -440, -1508, -423, -630, 425, -628, 450, -1542, 398, -1751, 477, -1752, 596, -1354, 503, -1145, 475, -173, 346, -173, 349, 10)
+
+[node name="LidArea" type="Area2D" parent="." unique_id=987649531]
+collision_layer = 0
+collision_mask = 12
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LidArea" unique_id=1880410838]
+position = Vector2(0, -1795)
+shape = SubResource("RectangleShape2D_81myi")
+debug_color = Color(0, 0.64169824, 0.33513498, 0.41960785)
+
+[node name="LidCollider" type="StaticBody2D" parent="." unique_id=540225654]
+collision_layer = 8
+collision_mask = 0
+physics_material_override = SubResource("PhysicsMaterial_suxht")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LidCollider" unique_id=1173917981]
+position = Vector2(-0.5, -1153)
+shape = SubResource("RectangleShape2D_q37hs")
+debug_color = Color(0.8073615, 0.41720814, 3.85046e-07, 0.41960785)
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="LidCollider" unique_id=933231728]
+position = Vector2(-493.00003, -1516)
+rotation = 0.3183645
+scale = Vector2(0.9999998, 0.9999998)
+shape = SubResource("RectangleShape2D_bsurk")
+debug_color = Color(0.8073615, 0.41720814, 3.85046e-07, 0.41960785)
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="LidCollider" unique_id=1148983271]
+position = Vector2(488, -1526.0001)
+rotation = -0.29630667
+scale = Vector2(0.9999998, 0.9999998)
+shape = SubResource("RectangleShape2D_bsurk")
+debug_color = Color(0.8073615, 0.41720814, 3.85046e-07, 0.41960785)
+
+[connection signal="body_entered" from="LidArea" to="." method="_on_lid_area_body_entered"]
+[connection signal="body_exited" from="LidArea" to="." method="_on_lid_area_body_exited"]
