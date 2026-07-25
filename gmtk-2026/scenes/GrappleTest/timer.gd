@@ -1,12 +1,18 @@
 extends Label
 
+#@export var engame_display:CanvasLayer
 @export var total_time:float = 7.
 @export var required_items: int = 5
 var held_items: int = 0
-@onready var end_screen = $"End Screen"
+#@onready var end_screen = $"End Screen"
+
+@onready var player = $"../Player"
+@onready var rocket = $"../Rocket2"
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+		
 	pass # Replace with function body.
 
 
@@ -16,12 +22,7 @@ func _process(delta: float) -> void:
 		total_time -= delta
 		if total_time <= 0.:
 			total_time = 0.
-			
-			
-			## Game Over script here
-			end_screen.visible = true
-	
-	
+
 	var time = format_time(total_time)
 	var display_time:String 
 	
@@ -32,22 +33,28 @@ func _process(delta: float) -> void:
 		display_time = "%02d : %02d : %0.3f" 
 		display_time = display_time % [time["minutes"] , time["seconds"] , time["miliseconds"]]
 	elif total_time <= 0.:
-		if held_items >= required_items:
-			display_time = "WIN"
-		else: 
-			display_time = "GAME OVER" 
+		total_time = 0
+		display_time = "%02d : %02d" 
+		display_time = display_time % [0 , 0]
+		if rocket:
+			rocket.launch_rocket()
 	
 	self.set_text(display_time)
 	
 	pass
 
-
-
-func _input(event: InputEvent) -> void:
+func launch(win:bool):
+	total_time = 0
 	
-	if event.is_action_pressed("escape"):
-		end_screen.visible = not end_screen.visible
-	pass
+	print("AAA")
+	player.engame_screen(win)
+
+
+#func _input(event: InputEvent) -> void:
+	
+	#if event.is_action_pressed("escape"):
+		#end_screen.visible = not end_screen.visible
+	#pass
 
 ###############################################################################
 func format_time(_seconds:float) -> Dictionary:
@@ -66,6 +73,7 @@ func format_time(_seconds:float) -> Dictionary:
 	}
 
 	return _time
+	
 
 
 ###############################################################################

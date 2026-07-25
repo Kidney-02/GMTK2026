@@ -2,6 +2,9 @@
 
 [ext_resource type="Script" uid="uid://bfaiw4wgywjkm" path="res://prefabs/Conveyer/conveyer.gd" id="1_vjjto"]
 
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_0yvuu"]
+friction = 0.0
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rumqe"]
 size = Vector2(800, 92)
 
@@ -10,8 +13,11 @@ size = Vector2(678, 13)
 
 [node name="Conveyer" type="Node2D" unique_id=116787448]
 script = ExtResource("1_vjjto")
+spawn_timer = 2.5
+spawn_rand = 0.85
 
 [node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=1362646900]
+physics_material_override = SubResource("PhysicsMaterial_0yvuu")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=1670905685]
 position = Vector2(175, 45)

@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://bnxpbf0lgx8tr"]
+
+[ext_resource type="PackedScene" uid="uid://de40n2qglmnir" path="res://prefabs/Item/Class/item_base.tscn" id="1_26puc"]
+[ext_resource type="Texture2D" uid="uid://dmjstpuvs7nx1" path="res://art/Rocket/Rocket_Lid.tres" id="2_qthqp"]
+
+[node name="Item" unique_id=2035982705 instance=ExtResource("1_26puc")]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." index="0" unique_id=262939638]
+polygon = PackedVector2Array(481, 191, 284, 78, 230, -20, 122, -69, 72, -161, -3, -196, -98, -154, -145, -67, -241, -31, -291, 65, -501, 190)
+
+[node name="Sprite2D" parent="." index="2" unique_id=868096040]
+scale = Vector2(1, 1)
+texture = ExtResource("2_qthqp")

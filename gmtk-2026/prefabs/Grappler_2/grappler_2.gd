@@ -2,19 +2,20 @@ extends Node2D
 class_name Player
 
 
-@onready var rope = $SliderBase/GrooveJoint2D/GrapplerBase/Rope
-@onready var rope_line = $SliderBase/GrooveJoint2D/GrapplerBase/Rope/Line2D
-@onready var grab_area = $SliderBase/GrabberHand/GrabArea
-@onready var grabber = $SliderBase/GrabberHand
-@onready var grabber_sprite = $SliderBase/GrabberHand/Icon
-@onready var grabber_base = $SliderBase/GrooveJoint2D/GrapplerBase
+@onready var rope = $GrapplerBase/Rope
+@onready var rope_line = $GrapplerBase/Rope/Line2D
+@onready var grab_area = $GrabberHand/GrabArea
+@onready var grabber = $GrabberHand
+@onready var grabber_sprite = $GrabberHand/Icon
+@onready var grabber_base = $GrapplerBase
+@onready var end_screen = $EndScreen
 
-@export var item_container:Node2D
+
+@export var item_container:Node
 
 
-@export var max_speed:float 			= 800.
-@export var speed_up:float 				= 50.
-@export var speed_down:float 			= 800.
+@export var speed_up:float 				= 500.
+@export var speed_down:float 			= 100.
 
 var input_threshold:float 				= 0.01
 
@@ -27,10 +28,12 @@ var rope_length = 300.
 @export var segment_length = 50.
 @export var rope_min = 150.
 @export var rope_max = 1500.
-@export var lowering_speed = 100.
-@export var raising_speed = 100.
+@export var lowering_speed = 300.
+@export var raising_speed = 220.
+@export var drop_speed = 800.
+@export var breaking_threshold = 10.
 
-
+var rope_dropping = false
 var grabbing:bool = false
 var grabbed_items = {}
 
@@ -42,9 +45,9 @@ func _ready() -> void:
 	update_rope_length(0.)
 	
 	if not item_container:
-		item_container == get_tree().root
+		item_container = get_tree().root
 	
-	
+	end_screen.visible = false
 	
 	pass # Replace with function body.
 
@@ -63,103 +66,142 @@ func _process(_delta: float) -> void:
 	pass
 
 func _physics_process(delta: float) -> void:
-	process_input(delta)
+	process_move(delta)
 	grabber_base.apply_central_force(force)
 	
 	#print (delta)
+	process_rope(delta)
 	update_rope_length(delta)
 	
 	
-func _input(_event: InputEvent) -> void:
-	input_move_dir = Input.get_axis("left", "right")	
+func _input(event: InputEvent) -> void:
+	input_move_dir = Input.get_axis("left", "right")
 	input_rope_dir = Input.get_axis("lower", "raise")
+	if input_rope_dir !=0:
+		#print(input_rope_dir)
+		if rope_dropping:
+			rope_length_target = rope_length
+			rope_dropping = false
 	
-	if Input.is_action_just_pressed("grab_drop"):
+	if event.is_action_pressed("grab_drop"):
 		
 		grab_release()
 		pass
+		
+	if event.is_action_pressed("dropcrane"):
+		
+		rope_dropping = true
+		rope_length_target = rope_max
+		#rope_length = rope_max
+		
+		
+	if event.is_action_pressed("escape"):
+		end_screen.visible = not end_screen.visible
+
 	
 
 ############################################
-func process_input(_delta:float):
+func process_move(_delta:float):
 	## Move
-	if abs(input_move_dir) > 0. or abs(force.x) > 0.:
-		if abs(input_move_dir) > input_threshold :
-			## Moving
-			force.x += input_move_dir * speed_up if abs(force.x) < max_speed else 0.
-		else:
+	var vel = grabber_base.get_linear_velocity().x
+	
+	if abs(input_move_dir) > input_threshold :
+		## Moving
+		force.x = input_move_dir * speed_up
+	elif abs(input_move_dir) < input_threshold:
+		if abs(vel) > breaking_threshold:
 			## Breaking
-			var cur_dir = sign(force.x)
-			force.x -= cur_dir * speed_down if abs(force.x) >= speed_down else force.x
-	
-	
+			var dir = sign(vel)
+			force.x = -dir * speed_down
+			#print (force.x, "  ",  vel)
+			#force.x = 0.
+		elif abs(vel) < breaking_threshold:
+			force.x = 0
+			#print(vel)
+
+
+func process_rope(_delta:float):
 	#if abs(input_rope_dir) > 0. :
+	
+	
 	rope_length_target -= input_rope_dir * lowering_speed * _delta if input_rope_dir < 0 else input_rope_dir * raising_speed * _delta
 	rope_length_target = clamp(rope_length_target, rope_min, rope_max)
-
 	
-		
+
 func update_rope_length(_delta:float):
 	
 	var diff = rope_length - rope_length_target
+	var _lowering_speed = lowering_speed if not rope_dropping else drop_speed
 	
 	if _delta >= 0.001 and abs(diff) > 0.1:
 		var dir = sign(diff)
-		rope_length += lowering_speed * _delta if dir < 0 else -1 * raising_speed * _delta
-
-		#print(diff)
-		
+		rope_length += _lowering_speed * _delta if dir < 0 else -1 * raising_speed * _delta
 	else: 
 		rope_length = rope_length_target
-		
 	rope_length = clamp(rope_length, rope_min, rope_max)
-		
 	rope.rope_length = rope_length
-	#rope.num_segments = int(rope_length / segment_length)
-	#rope.max_endpoint_distance = rope_length + 50.
-	pass
+	
+	rope_dropping = false if rope_length >= rope_max else rope_length
+	
 	
 func grab_release():
-	
 	grabbing = not grabbing
 	
 	if grabbing:
 		var overlapping = grab_area.get_overlapping_bodies()
 		
-		print(overlapping)
+		#print(overlapping)
 		if overlapping:
 			for item in overlapping:
 				if item is not Item:
 					continue
-				print (item)
 				item.freeze = true
 				item.reparent(grabber)
 				var collisions = []
 				for child in item.get_children():
-					if child is CollisionShape2D:
+					if child is CollisionShape2D or child is CollisionPolygon2D:
+						print(child)
+						child.set_deferred("disabled", true)
 						var col = child.duplicate()
 						grabber.add_child(col)
 						col.global_transform = child.global_transform
 						collisions.append(col)
-				print(item.get_parent())
+				if item is Lid:
+					grabber.set_collision_mask_value(4, true)
 				grabbed_items.merge({item:collisions})
 		else:
 			grabbing = false
 	else:
+		
+		var drop_force = grabber.get_linear_velocity() * 25.
 		print (grabbed_items)
 		for item in grabbed_items.keys():
 			## item is a dict of {item : collisions}
 			#var item = item_dict[0]
-			item.freeze = false
-			item.reparent(item_container)
+			if item is Lid:
+				drop_force = Vector2(0.,0.)
+				grabber.set_collision_mask_value(4, false)
 			for col in grabbed_items[item]:
 				col.queue_free()
 			
+			for child in item.get_children():
+				if child is CollisionShape2D or child is CollisionPolygon2D:
+					child.set_deferred("disabled", false)
+			
+			
+			item.freeze = false
+			item.reparent(item_container)
+			item.apply_central_force(drop_force)
 		grabbed_items.clear()
 		
 	grabber_sprite.modulate = Color(2.0, 0.10, 0.0, 1.0) if grabbing else Color(1., 1., 1., 1.0)
-	
-	pass
+
+func engame_screen(win:bool):
+	$WinScreen.visible = true
+	$WinScreen/Label.text = "JUST IN TIME" if win else "CATASTROPHIC FAIL"
+
+func show_menu():
+	end_screen.visible = true
 	
 
 #####################################

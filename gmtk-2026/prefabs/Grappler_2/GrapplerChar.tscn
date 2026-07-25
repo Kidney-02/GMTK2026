@@ -5,6 +5,7 @@
 [ext_resource type="Script" uid="uid://b2shq2gjd4fvt" path="res://addons/ropesim/Rope.gd" id="3_kw28b"]
 [ext_resource type="Script" uid="uid://dvxegqp0cf77n" path="res://addons/ropesim/RopeInteraction.gd" id="4_xnab7"]
 [ext_resource type="Texture2D" uid="uid://criwv6nuivcxy" path="res://addons/ropesim/rope_examples/icon.svg" id="5_a3smu"]
+[ext_resource type="PackedScene" uid="uid://b4juiuivaquop" path="res://scenes/Menus/end_screen.tscn" id="7_xnab7"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_8wjqr"]
 friction = 5.0
@@ -15,7 +16,6 @@ bounce = 5.0
 size = Vector2(128, 128)
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_p8h6e"]
-rough = true
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gu001"]
 size = Vector2(64, 64)
@@ -34,26 +34,51 @@ collision_mask = 0
 [node name="GrooveJoint2D" type="GrooveJoint2D" parent="SliderBase" unique_id=496397343]
 rotation = -1.5707964
 node_a = NodePath("..")
-node_b = NodePath("GrapplerBase")
+node_b = NodePath("../../GrapplerBase")
 bias = 0.9
-length = 1028.0
-initial_offset = 580.0
+length = 1500.0
+initial_offset = 995.0
 
-[node name="GrapplerBase" type="RigidBody2D" parent="SliderBase/GrooveJoint2D" unique_id=506491648]
-position = Vector2(-2.5090338e-05, 580)
-rotation = 1.5707964
+[node name="EndScreen" parent="." unique_id=1094206676 instance=ExtResource("7_xnab7")]
+layer = 2
+visible = false
+
+[node name="WinScreen" type="CanvasLayer" parent="." unique_id=1138851228]
+visible = false
+
+[node name="Label" type="Label" parent="WinScreen" unique_id=1493521763]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -168.5
+offset_top = -123.0
+offset_right = 168.5
+offset_bottom = 123.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 180
+text = "CATASTROPHIC FAIL"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+uppercase = true
+
+[node name="GrapplerBase" type="RigidBody2D" parent="." unique_id=506491648]
+position = Vector2(880, -2.6226917e-07)
 mass = 2.0
 physics_material_override = SubResource("PhysicsMaterial_8wjqr")
 lock_rotation = true
 linear_damp = 0.2
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="SliderBase/GrooveJoint2D/GrapplerBase" unique_id=1155125891]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GrapplerBase" unique_id=1155125891]
 shape = SubResource("RectangleShape2D_rupg3")
 
-[node name="Sprite2D" type="Sprite2D" parent="SliderBase/GrooveJoint2D/GrapplerBase" unique_id=1700432396]
+[node name="Sprite2D" type="Sprite2D" parent="GrapplerBase" unique_id=1700432396]
 texture = ExtResource("2_suxht")
 
-[node name="Rope" type="Node2D" parent="SliderBase/GrooveJoint2D/GrapplerBase" unique_id=1586010025]
+[node name="Rope" type="Node2D" parent="GrapplerBase" unique_id=1586010025]
 position = Vector2(0, 60)
 script = ExtResource("3_kw28b")
 num_segments = 32
@@ -65,51 +90,54 @@ enable_collisions = true
 collision_damping = 2.0
 collision_mask = 2
 
-[node name="RopeInteraction" type="Node" parent="SliderBase/GrooveJoint2D/GrapplerBase/Rope" unique_id=368250305 node_paths=PackedStringArray("target_node", "input_node_override", "rope")]
+[node name="RopeInteraction" type="Node" parent="GrapplerBase/Rope" unique_id=368250305 node_paths=PackedStringArray("target_node", "input_node_override", "rope")]
 script = ExtResource("4_xnab7")
 disable_in_editor = true
 position_update_mode = 0
-target_node = NodePath("../../../../GrabberHand/attachment_marker/rope_end")
-input_node_override = NodePath("../../../../GrabberHand/attachment_marker")
+target_node = NodePath("../../../GrabberHand/attachment_marker/rope_end")
+input_node_override = NodePath("../../../GrabberHand/attachment_marker")
 rope = NodePath("..")
 
-[node name="Line2D" type="Line2D" parent="SliderBase/GrooveJoint2D/GrapplerBase/Rope" unique_id=1277668366]
+[node name="Line2D" type="Line2D" parent="GrapplerBase/Rope" unique_id=1277668366]
 
-[node name="GrabberHand" type="RigidBody2D" parent="SliderBase" unique_id=146998520]
-position = Vector2(600, 223)
-mass = 5.0
+[node name="GrabberHand" type="RigidBody2D" parent="." unique_id=146998520]
+position = Vector2(900, 223)
+mass = 0.7
 physics_material_override = SubResource("PhysicsMaterial_p8h6e")
 linear_damp = 3.0
 angular_damp = 3.0
 metadata/_edit_group_ = true
 
-[node name="GrabberCollision" type="CollisionShape2D" parent="SliderBase/GrabberHand" unique_id=1279730044]
+[node name="GrabberCollision" type="CollisionShape2D" parent="GrabberHand" unique_id=1279730044]
 shape = SubResource("RectangleShape2D_gu001")
 
-[node name="Icon" type="Sprite2D" parent="SliderBase/GrabberHand" unique_id=1697139808]
+[node name="Icon" type="Sprite2D" parent="GrabberHand" unique_id=1697139808]
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("5_a3smu")
 
-[node name="attachment_marker" type="Marker2D" parent="SliderBase/GrabberHand" unique_id=1807871460]
+[node name="attachment_marker" type="Marker2D" parent="GrabberHand" unique_id=1807871460]
 position = Vector2(0, -31)
 metadata/_edit_group_ = true
 
-[node name="rope_end" type="CharacterBody2D" parent="SliderBase/GrabberHand/attachment_marker" unique_id=1648724958]
+[node name="rope_end" type="CharacterBody2D" parent="GrabberHand/attachment_marker" unique_id=1648724958]
 collision_layer = 0
 collision_mask = 0
 motion_mode = 1
 
-[node name="PinJoint2D" type="PinJoint2D" parent="SliderBase/GrabberHand/attachment_marker/rope_end" unique_id=1060281766]
+[node name="PinJoint2D" type="PinJoint2D" parent="GrabberHand/attachment_marker/rope_end" unique_id=1060281766]
 node_a = NodePath("../../..")
 node_b = NodePath("..")
 softness = 0.05
 
-[node name="GrabArea" type="Area2D" parent="SliderBase/GrabberHand" unique_id=811988743]
+[node name="GrabArea" type="Area2D" parent="GrabberHand" unique_id=811988743]
 position = Vector2(0, 30)
 collision_layer = 0
 collision_mask = 4
 
-[node name="GrabBox" type="CollisionShape2D" parent="SliderBase/GrabberHand/GrabArea" unique_id=1165394606]
+[node name="GrabBox" type="CollisionShape2D" parent="GrabberHand/GrabArea" unique_id=1165394606]
 position = Vector2(-0.5, 19.5)
 shape = SubResource("RectangleShape2D_81myi")
 debug_color = Color(0.8515767, 0.3721226, 3.85046e-07, 0.41960785)
+
+[node name="Camera2D" type="Camera2D" parent="GrabberHand" unique_id=105370969]
+zoom = Vector2(0.635, 0.635)

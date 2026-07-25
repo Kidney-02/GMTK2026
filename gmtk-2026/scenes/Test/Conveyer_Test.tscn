@@ -2,6 +2,10 @@
 
 [ext_resource type="PackedScene" uid="uid://nvj6n4nubwrd" path="res://prefabs/Conveyer/conveyer.tscn" id="1_b0sj5"]
 [ext_resource type="PackedScene" uid="uid://de40n2qglmnir" path="res://prefabs/Item/Class/item_base.tscn" id="2_0yvuu"]
+[ext_resource type="PackedScene" uid="uid://b13m6f1j1jgn1" path="res://prefabs/Grappler_2/GrapplerChar.tscn" id="3_e4tab"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_81myi"]
+size = Vector2(658, 89)
 
 [node name="Node2D" type="Node2D" unique_id=346921463]
 
@@ -10,3 +14,14 @@ position = Vector2(678, 661)
 
 [node name="Item" parent="." unique_id=2035982705 instance=ExtResource("2_0yvuu")]
 position = Vector2(1044, 602)
+freeze_mode = 1
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="." unique_id=1279787643]
+position = Vector2(250, 733)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2" unique_id=1519020356]
+position = Vector2(11, 15)
+shape = SubResource("RectangleShape2D_81myi")
+
+[node name="GrabberCharacter" parent="." unique_id=1376512836 instance=ExtResource("3_e4tab")]
+position = Vector2(-188, -113)

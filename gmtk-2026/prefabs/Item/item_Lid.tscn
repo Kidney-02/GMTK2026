@@ -1,0 +1,30 @@
+[gd_scene format=3 uid="uid://b74oal1y2ut2w"]
+
+[ext_resource type="PackedScene" uid="uid://de40n2qglmnir" path="res://prefabs/Item/Class/item_base.tscn" id="1_xhuj4"]
+[ext_resource type="Script" uid="uid://dgijhapyhrf73" path="res://prefabs/Item/item_lid.gd" id="2_3d358"]
+[ext_resource type="Texture2D" uid="uid://dmjstpuvs7nx1" path="res://art/Rocket/Rocket_Lid.tres" id="2_pua4h"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_xhuj4"]
+friction = 10.0
+rough = true
+
+[node name="Item" unique_id=2035982705 instance=ExtResource("1_xhuj4")]
+collision_layer = 12
+collision_mask = 13
+mass = 10.0
+physics_material_override = SubResource("PhysicsMaterial_xhuj4")
+gravity_scale = 0.8
+linear_damp = 2.0
+angular_damp = 2.0
+script = ExtResource("2_3d358")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." index="0" unique_id=262939638]
+polygon = PackedVector2Array(263, 106, 159, 40, 125, -12, 67, -40, 44, -86, -3, -105, -55, -88, -77, -41, -141, -7, -172, 42, -273, 106)
+
+[node name="CollisionShape2D" parent="." index="1" unique_id=2109391994]
+disabled = true
+
+[node name="Sprite2D" parent="." index="2" unique_id=868096040]
+z_index = 10
+scale = Vector2(0.55, 0.55)
+texture = ExtResource("2_pua4h")
