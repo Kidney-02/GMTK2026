@@ -1,11 +1,16 @@
-extends RigidBody2D
+extends Node2D
+class_name Player
 
 
-@onready var rope = $Rope
-@onready var rope_line = $Rope/Line2D
-@onready var grab_area = $"../../GrabberHand/GrabArea"
-@onready var grab_pin_a = $"../../GrabberHand/GrabArea/GrabPin"
-@onready var grabber = $"../../GrabberHand"
+@onready var rope = $SliderBase/GrooveJoint2D/GrapplerBase/Rope
+@onready var rope_line = $SliderBase/GrooveJoint2D/GrapplerBase/Rope/Line2D
+@onready var grab_area = $SliderBase/GrabberHand/GrabArea
+@onready var grabber = $SliderBase/GrabberHand
+@onready var grabber_sprite = $SliderBase/GrabberHand/Icon
+@onready var grabber_base = $SliderBase/GrooveJoint2D/GrapplerBase
+
+@export var item_container:Node2D
+
 
 @export var max_speed:float 			= 800.
 @export var speed_up:float 				= 50.
@@ -27,14 +32,17 @@ var rope_length = 300.
 
 
 var grabbing:bool = false
-
+var grabbed_items = {}
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	
 	
-	self.apply_central_force(Vector2(20, 0))
+	grabber_base.apply_central_force(Vector2(20, 0))
 	update_rope_length(0.)
+	
+	if not item_container:
+		item_container == get_tree().root
 	
 	
 	
@@ -56,7 +64,7 @@ func _process(_delta: float) -> void:
 
 func _physics_process(delta: float) -> void:
 	process_input(delta)
-	self.apply_central_force(force)
+	grabber_base.apply_central_force(force)
 	
 	#print (delta)
 	update_rope_length(delta)
@@ -107,7 +115,7 @@ func update_rope_length(_delta:float):
 	rope_length = clamp(rope_length, rope_min, rope_max)
 		
 	rope.rope_length = rope_length
-	rope.num_segments = int(rope_length / segment_length)
+	#rope.num_segments = int(rope_length / segment_length)
 	#rope.max_endpoint_distance = rope_length + 50.
 	pass
 	
@@ -117,18 +125,39 @@ func grab_release():
 	
 	if grabbing:
 		var overlapping = grab_area.get_overlapping_bodies()
-		#print(overlapping)
+		
+		print(overlapping)
 		if overlapping:
-			var item = overlapping[0]
-			#item.lock_rotation = true
-			grab_pin_a.global_position = item.global_position
-			grab_pin_a.set_node_b(item.get_path())
+			for item in overlapping:
+				if item is not Item:
+					continue
+				print (item)
+				item.freeze = true
+				item.reparent(grabber)
+				var collisions = []
+				for child in item.get_children():
+					if child is CollisionShape2D:
+						var col = child.duplicate()
+						grabber.add_child(col)
+						col.global_transform = child.global_transform
+						collisions.append(col)
+				print(item.get_parent())
+				grabbed_items.merge({item:collisions})
 		else:
 			grabbing = false
 	else:
-		grab_pin_a.set_node_b("")
+		print (grabbed_items)
+		for item in grabbed_items.keys():
+			## item is a dict of {item : collisions}
+			#var item = item_dict[0]
+			item.freeze = false
+			item.reparent(item_container)
+			for col in grabbed_items[item]:
+				col.queue_free()
+			
+		grabbed_items.clear()
 		
-	#print(grabbing)
+	grabber_sprite.modulate = Color(2.0, 0.10, 0.0, 1.0) if grabbing else Color(1., 1., 1., 1.0)
 	
 	pass
 	

@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://cprrgbv6wg1ff"]
 
 [ext_resource type="Texture2D" uid="uid://c814cmeun775p" path="res://art/temp/Box.png" id="1_20v0f"]
-[ext_resource type="PackedScene" uid="uid://de40n2qglmnir" path="res://prefabs/Item/item_base.tscn" id="1_dgmwu"]
+[ext_resource type="PackedScene" uid="uid://de40n2qglmnir" path="res://prefabs/Item/Class/item_base.tscn" id="1_dgmwu"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_20v0f"]
 size = Vector2(76, 76)

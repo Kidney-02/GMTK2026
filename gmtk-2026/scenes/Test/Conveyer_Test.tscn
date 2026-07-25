@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://djb7g84jsfy72"]
+
+[ext_resource type="PackedScene" uid="uid://nvj6n4nubwrd" path="res://prefabs/Conveyer/conveyer.tscn" id="1_b0sj5"]
+[ext_resource type="PackedScene" uid="uid://de40n2qglmnir" path="res://prefabs/Item/Class/item_base.tscn" id="2_0yvuu"]
+
+[node name="Node2D" type="Node2D" unique_id=346921463]
+
+[node name="Conveyer" parent="." unique_id=116787448 instance=ExtResource("1_b0sj5")]
+position = Vector2(678, 661)
+
+[node name="Item" parent="." unique_id=2035982705 instance=ExtResource("2_0yvuu")]
+position = Vector2(1044, 602)

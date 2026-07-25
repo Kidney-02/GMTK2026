@@ -42,8 +42,10 @@ func _process(delta: float) -> void:
 	pass
 
 
+
 func _input(event: InputEvent) -> void:
-	if Input.is_action_pressed("escape"):
+	
+	if event.is_action_pressed("escape"):
 		end_screen.visible = not end_screen.visible
 	pass
 

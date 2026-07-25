@@ -1,0 +1,37 @@
+[gd_scene format=3 uid="uid://nvj6n4nubwrd"]
+
+[ext_resource type="Script" uid="uid://bfaiw4wgywjkm" path="res://prefabs/Conveyer/conveyer.gd" id="1_vjjto"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rumqe"]
+size = Vector2(800, 92)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_680my"]
+size = Vector2(678, 13)
+
+[node name="Conveyer" type="Node2D" unique_id=116787448]
+script = ExtResource("1_vjjto")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=1362646900]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=1670905685]
+position = Vector2(175, 45)
+shape = SubResource("RectangleShape2D_rumqe")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D" unique_id=1145353869]
+position = Vector2(425, 1)
+polygon = PackedVector2Array(0, 0, 150, -150, 150, 0)
+
+[node name="Spawn Location" type="Marker2D" parent="StaticBody2D" unique_id=1898793469]
+position = Vector2(368, -74)
+
+[node name="Area2D" type="Area2D" parent="." unique_id=827390137]
+collision_layer = 0
+collision_mask = 14
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1250493439]
+position = Vector2(114, -3.5)
+shape = SubResource("RectangleShape2D_680my")
+debug_color = Color(1, 0.6166667, 0, 0.41960785)
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
