@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bghswbhaf6w0h" path="res://scenes/GrappleTest/timer.gd" id="1_1kyfl"]
 [ext_resource type="PackedScene" uid="uid://b13m6f1j1jgn1" path="res://prefabs/Grappler_2/GrapplerChar.tscn" id="1_obsje"]
-[ext_resource type="PackedScene" uid="uid://de40n2qglmnir" path="res://prefabs/Item/item_base.tscn" id="2_p8h6e"]
+[ext_resource type="PackedScene" uid="uid://de40n2qglmnir" path="res://prefabs/Item/Class/item_base.tscn" id="2_p8h6e"]
 [ext_resource type="PackedScene" uid="uid://cprrgbv6wg1ff" path="res://prefabs/Item/item_box.tscn" id="3_j2146"]
 [ext_resource type="PackedScene" uid="uid://b4juiuivaquop" path="res://scenes/Menus/end_screen.tscn" id="5_rteqm"]
 
@@ -17,12 +17,13 @@ size = Vector2(480, 546)
 
 [node name="GameTest" type="Node2D" unique_id=1722283576]
 
-[node name="Player" parent="." unique_id=1376512836 instance=ExtResource("1_obsje")]
+[node name="Player" parent="." unique_id=1376512836 node_paths=PackedStringArray("item_container") instance=ExtResource("1_obsje")]
 position = Vector2(133, 116)
+item_container = NodePath("../Items")
 
 [node name="Level Collision" type="StaticBody2D" parent="." unique_id=717369642]
 position = Vector2(0, 725)
-collision_layer = 3
+collision_layer = 7
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Level Collision" unique_id=462254040]
@@ -55,31 +56,26 @@ debug_color = Color(0.820062, 0.40349212, 0, 0.41960785)
 position = Vector2(1001, 522)
 
 [node name="Item4" parent="Items" unique_id=887846603 instance=ExtResource("3_j2146")]
-position = Vector2(53, 102)
-collision_mask = 1
+position = Vector2(96, 116)
 
 [node name="Item2" parent="Items" unique_id=1766477443 instance=ExtResource("3_j2146")]
 position = Vector2(-191, 113)
-collision_mask = 1
 
 [node name="Item7" parent="Items" unique_id=2108725107 instance=ExtResource("3_j2146")]
 position = Vector2(186, -106)
-collision_mask = 1
 
 [node name="Item8" parent="Items" unique_id=470540917 instance=ExtResource("3_j2146")]
 position = Vector2(-58, -95)
-collision_mask = 1
 
 [node name="Item11" parent="Items" unique_id=247006316 instance=ExtResource("3_j2146")]
 position = Vector2(70, -104)
-collision_mask = 1
 
 [node name="Item12" parent="Items" unique_id=1910231831 instance=ExtResource("3_j2146")]
 position = Vector2(-343, 23)
-collision_mask = 1
 
 [node name="Item" parent="Items" unique_id=2035982705 instance=ExtResource("2_p8h6e")]
-position = Vector2(-291, -183)
+position = Vector2(-55, 55)
+rotation = 2.3378592
 
 [node name="Item3" parent="Items" unique_id=1215738426 instance=ExtResource("2_p8h6e")]
 position = Vector2(201, 108)
@@ -94,6 +90,7 @@ position = Vector2(85, -257)
 position = Vector2(-46, -227)
 
 [node name="Timer" type="Label" parent="." unique_id=1868185383]
+z_index = 99
 offset_left = 516.0
 offset_top = 16.0
 offset_right = 633.0
@@ -107,6 +104,7 @@ total_time = 45.0
 
 [node name="End Screen" parent="Timer" unique_id=1094206676 instance=ExtResource("5_rteqm")]
 visible = false
+z_index = 99
 layout_mode = 1
 offset_top = 322.0
 offset_bottom = 322.0

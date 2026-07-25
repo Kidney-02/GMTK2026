@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://de40n2qglmnir"]
 
-[ext_resource type="PackedScene" uid="uid://bb7eva0hruvcd" path="res://prefabs/Item/item_class.tscn" id="1_dpe1e"]
+[ext_resource type="PackedScene" uid="uid://bb7eva0hruvcd" path="res://prefabs/Item/Class/item_class.tscn" id="1_dpe1e"]
 [ext_resource type="Texture2D" uid="uid://d3uxwrgolkkvp" path="res://art/temp/Circle.png" id="1_m5vn8"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_yyb84"]
