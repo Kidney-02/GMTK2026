@@ -1,11 +1,13 @@
 [gd_scene format=3 uid="uid://b13m6f1j1jgn1"]
 
 [ext_resource type="Script" uid="uid://dmgykb56e3rp" path="res://prefabs/Grappler_2/grappler_2.gd" id="1_8wjqr"]
-[ext_resource type="Texture2D" uid="uid://dhcwybhoxgwhe" path="res://icon.svg" id="2_suxht"]
 [ext_resource type="Script" uid="uid://b2shq2gjd4fvt" path="res://addons/ropesim/Rope.gd" id="3_kw28b"]
+[ext_resource type="Texture2D" uid="uid://co4eyt4thckme" path="res://art/assets/Grappler/GrabberBase.tres" id="3_suxht"]
 [ext_resource type="Script" uid="uid://dvxegqp0cf77n" path="res://addons/ropesim/RopeInteraction.gd" id="4_xnab7"]
-[ext_resource type="Texture2D" uid="uid://criwv6nuivcxy" path="res://addons/ropesim/rope_examples/icon.svg" id="5_a3smu"]
+[ext_resource type="Texture2D" uid="uid://dlu115jsal0v6" path="res://art/assets/Grappler/Rope.png" id="6_kw28b"]
+[ext_resource type="Texture2D" uid="uid://dn8lydmiywc5q" path="res://art/assets/Grappler/GrapplerHand_Idle.tres" id="6_suxht"]
 [ext_resource type="PackedScene" uid="uid://b4juiuivaquop" path="res://scenes/Menus/end_screen.tscn" id="7_xnab7"]
+[ext_resource type="AudioStream" uid="uid://bi5ekenp4rgsw" path="res://audio/sfx/magnet_On.wav" id="8_xnab7"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_8wjqr"]
 friction = 5.0
@@ -18,10 +20,10 @@ size = Vector2(128, 128)
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_p8h6e"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gu001"]
-size = Vector2(64, 64)
+size = Vector2(64, 51)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_81myi"]
-size = Vector2(69, 49)
+size = Vector2(69, 35)
 
 [node name="GrabberCharacter" type="Node2D" unique_id=1376512836]
 script = ExtResource("1_8wjqr")
@@ -47,6 +49,7 @@ visible = false
 visible = false
 
 [node name="Label" type="Label" parent="WinScreen" unique_id=1493521763]
+custom_minimum_size = Vector2(0.955, 0.82)
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -59,14 +62,14 @@ offset_bottom = 123.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 180
-text = "CATASTROPHIC FAIL"
+text = "CATASTROPHIC FAILURE"
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
 uppercase = true
 
 [node name="GrapplerBase" type="RigidBody2D" parent="." unique_id=506491648]
-position = Vector2(880, -2.6226917e-07)
+position = Vector2(997, -2.6226917e-07)
 mass = 2.0
 physics_material_override = SubResource("PhysicsMaterial_8wjqr")
 lock_rotation = true
@@ -76,7 +79,8 @@ linear_damp = 0.2
 shape = SubResource("RectangleShape2D_rupg3")
 
 [node name="Sprite2D" type="Sprite2D" parent="GrapplerBase" unique_id=1700432396]
-texture = ExtResource("2_suxht")
+position = Vector2(0, 25)
+texture = ExtResource("3_suxht")
 
 [node name="Rope" type="Node2D" parent="GrapplerBase" unique_id=1586010025]
 position = Vector2(0, 60)
@@ -99,6 +103,11 @@ input_node_override = NodePath("../../../GrabberHand/attachment_marker")
 rope = NodePath("..")
 
 [node name="Line2D" type="Line2D" parent="GrapplerBase/Rope" unique_id=1277668366]
+texture_filter = 1
+texture_repeat = 2
+width = 16.0
+texture = ExtResource("6_kw28b")
+texture_mode = 1
 
 [node name="GrabberHand" type="RigidBody2D" parent="." unique_id=146998520]
 position = Vector2(900, 223)
@@ -109,11 +118,13 @@ angular_damp = 3.0
 metadata/_edit_group_ = true
 
 [node name="GrabberCollision" type="CollisionShape2D" parent="GrabberHand" unique_id=1279730044]
+position = Vector2(0, -6.5)
 shape = SubResource("RectangleShape2D_gu001")
 
 [node name="Icon" type="Sprite2D" parent="GrabberHand" unique_id=1697139808]
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("5_a3smu")
+position = Vector2(0, -7)
+scale = Vector2(0.7936652, 0.7936652)
+texture = ExtResource("6_suxht")
 
 [node name="attachment_marker" type="Marker2D" parent="GrabberHand" unique_id=1807871460]
 position = Vector2(0, -31)
@@ -135,9 +146,12 @@ collision_layer = 0
 collision_mask = 4
 
 [node name="GrabBox" type="CollisionShape2D" parent="GrabberHand/GrabArea" unique_id=1165394606]
-position = Vector2(-0.5, 19.5)
+position = Vector2(-0.5, 2.5)
 shape = SubResource("RectangleShape2D_81myi")
 debug_color = Color(0.8515767, 0.3721226, 3.85046e-07, 0.41960785)
 
 [node name="Camera2D" type="Camera2D" parent="GrabberHand" unique_id=105370969]
 zoom = Vector2(0.635, 0.635)
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="GrabberHand" unique_id=1772978344]
+stream = ExtResource("8_xnab7")

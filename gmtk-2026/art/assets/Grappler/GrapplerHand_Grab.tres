@@ -1,0 +1,7 @@
+[gd_resource type="AtlasTexture" format=3 uid="uid://b7q8vpsa7yl11"]
+
+[ext_resource type="Texture2D" uid="uid://d1u8rk4toljlb" path="res://art/assets/Rocket_Sprite_Sheet.png" id="1_44pxu"]
+
+[resource]
+atlas = ExtResource("1_44pxu")
+region = Rect2(2843.5796, 1164.1852, 78.281494, 90.72974)

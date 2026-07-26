@@ -1,7 +1,8 @@
 [gd_scene format=3 uid="uid://cprrgbv6wg1ff"]
 
-[ext_resource type="Texture2D" uid="uid://c814cmeun775p" path="res://art/temp/Box.png" id="1_20v0f"]
 [ext_resource type="PackedScene" uid="uid://de40n2qglmnir" path="res://prefabs/Item/Class/item_base.tscn" id="1_dgmwu"]
+[ext_resource type="Texture2D" uid="uid://bhe66m2mwwgo3" path="res://art/assets/Items/Crate.tres" id="2_a8kta"]
+[ext_resource type="AudioStream" uid="uid://b6syw5j28gu4r" path="res://audio/sfx/Wood Sound.mp3" id="3_rhdj4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_20v0f"]
 size = Vector2(76, 76)
@@ -12,4 +13,9 @@ size = Vector2(76, 76)
 shape = SubResource("RectangleShape2D_20v0f")
 
 [node name="Sprite2D" parent="." index="1" unique_id=868096040]
-texture = ExtResource("1_20v0f")
+position = Vector2(-1, 0)
+scale = Vector2(1.5200001, 1.5199999)
+texture = ExtResource("2_a8kta")
+
+[node name="AudioStreamPlayer2D" parent="." index="2" unique_id=1512604858]
+stream = ExtResource("3_rhdj4")

@@ -1,9 +1,14 @@
 [gd_scene format=3 uid="uid://nvj6n4nubwrd"]
 
 [ext_resource type="Script" uid="uid://bfaiw4wgywjkm" path="res://prefabs/Conveyer/conveyer.gd" id="1_vjjto"]
+[ext_resource type="Texture2D" uid="uid://bpxmk6awnsvbm" path="res://art/assets/Crane/Conveyor.tres" id="2_a3rq3"]
+[ext_resource type="Texture2D" uid="uid://dpyjy8pe3dcyr" path="res://art/assets/Crane/Concrete Flat.tres" id="3_n6h6h"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_0yvuu"]
 friction = 0.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_a3rq3"]
+size = Vector2(370.89532, 429.68723)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rumqe"]
 size = Vector2(800, 92)
@@ -19,13 +24,14 @@ spawn_rand = 0.85
 [node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=1362646900]
 physics_material_override = SubResource("PhysicsMaterial_0yvuu")
 
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D" unique_id=1027497569]
+position = Vector2(647.74866, -89.28288)
+rotation = -1.601039
+shape = SubResource("RectangleShape2D_a3rq3")
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=1670905685]
 position = Vector2(175, 45)
 shape = SubResource("RectangleShape2D_rumqe")
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D" unique_id=1145353869]
-position = Vector2(425, 1)
-polygon = PackedVector2Array(0, 0, 150, -150, 150, 0)
 
 [node name="Spawn Location" type="Marker2D" parent="StaticBody2D" unique_id=1898793469]
 position = Vector2(368, -74)
@@ -38,6 +44,18 @@ collision_mask = 14
 position = Vector2(114, -3.5)
 shape = SubResource("RectangleShape2D_680my")
 debug_color = Color(1, 0.6166667, 0, 0.41960785)
+
+[node name="Conveyor" type="Sprite2D" parent="." unique_id=1704093841]
+z_index = 5
+position = Vector2(286, -118)
+texture = ExtResource("2_a3rq3")
+
+[node name="ConcreteFlat" type="Sprite2D" parent="." unique_id=2014215623]
+z_index = 6
+position = Vector2(924, 73.00003)
+rotation = -3.1420805
+scale = Vector2(1, 1.5602186)
+texture = ExtResource("3_n6h6h")
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
