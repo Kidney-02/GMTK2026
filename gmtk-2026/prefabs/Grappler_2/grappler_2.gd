@@ -9,7 +9,12 @@ class_name Player
 @onready var grabber_sprite = $GrabberHand/Icon
 @onready var grabber_base = $GrapplerBase
 @onready var end_screen = $EndScreen
+@onready var audio_player = $GrabberHand/AudioStreamPlayer2D
 
+
+
+var texture_on = 	preload("res://art/assets/Grappler/GrapplerHand_Grab.tres")
+var texture_off = 	preload("res://art/assets/Grappler/GrapplerHand_Idle.tres")
 
 @export var item_container:Node
 
@@ -147,6 +152,9 @@ func update_rope_length(_delta:float):
 func grab_release():
 	grabbing = not grabbing
 	
+	
+	audio_player.play()
+	
 	if grabbing:
 		var overlapping = grab_area.get_overlapping_bodies()
 		
@@ -194,11 +202,12 @@ func grab_release():
 			item.apply_central_force(drop_force)
 		grabbed_items.clear()
 		
-	grabber_sprite.modulate = Color(2.0, 0.10, 0.0, 1.0) if grabbing else Color(1., 1., 1., 1.0)
+	grabber_sprite.texture = texture_on if grabbing else texture_off
+	#grabber_sprite.modulate = Color(2.0, 0.10, 0.0, 1.0) if grabbing else Color(1., 1., 1., 1.0)
 
 func engame_screen(win:bool):
 	$WinScreen.visible = true
-	$WinScreen/Label.text = "JUST IN TIME" if win else "CATASTROPHIC FAIL"
+	$WinScreen/Label.text = "JUST IN TIME" if win else "CATASTROPHIC FAILURE"
 
 func show_menu():
 	end_screen.visible = true
@@ -251,3 +260,10 @@ func catmull_rom_spline(
 	return smooth_points
 
 #####################################
+
+
+
+
+
+func _on_audio_stream_player_finished() -> void:
+	pass # Replace with function body.

@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://b3sa6a4ywfmta"]
+
+[ext_resource type="PackedScene" uid="uid://de40n2qglmnir" path="res://prefabs/Item/Class/item_base.tscn" id="1_cxkoq"]
+[ext_resource type="Texture2D" uid="uid://tec4fghn6wa5" path="res://art/assets/Items/small_bomb.tres" id="2_cxkoq"]
+[ext_resource type="AudioStream" uid="uid://cupht6iqagyi7" path="res://audio/sfx/Piano_slam.wav" id="3_lew6f"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_20v0f"]
+size = Vector2(47, 46)
+
+[node name="Item" unique_id=2035982705 instance=ExtResource("1_cxkoq")]
+
+[node name="CollisionShape2D" parent="." index="0" unique_id=2109391994]
+position = Vector2(-0.5, 2)
+shape = SubResource("RectangleShape2D_20v0f")
+
+[node name="Sprite2D" parent="." index="1" unique_id=868096040]
+scale = Vector2(1.3191488, 1.15)
+texture = ExtResource("2_cxkoq")
+
+[node name="AudioStreamPlayer2D" parent="." index="2" unique_id=1512604858]
+stream = ExtResource("3_lew6f")

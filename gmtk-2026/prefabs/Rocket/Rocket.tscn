@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://dsiwjiyiqn1w7" path="res://prefabs/Rocket/rocket.gd" id="1_bsurk"]
 [ext_resource type="Texture2D" uid="uid://buxdoljtn66xc" path="res://art/Rocket/Rocket_Interior.tres" id="1_fmaue"]
 [ext_resource type="Texture2D" uid="uid://kp5ine6kjcr5" path="res://art/Rocket/Rocket_Body.tres" id="2_ln1sd"]
+[ext_resource type="AudioStream" uid="uid://bvgavxrq3bnjg" path="res://audio/sfx/Rocket.wav" id="4_m3e8p"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_81myi"]
 size = Vector2(952, 138)
@@ -74,6 +75,9 @@ rotation = -0.29630667
 scale = Vector2(0.9999998, 0.9999998)
 shape = SubResource("RectangleShape2D_bsurk")
 debug_color = Color(0.8073615, 0.41720814, 3.85046e-07, 0.41960785)
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1424142516]
+stream = ExtResource("4_m3e8p")
 
 [connection signal="body_entered" from="LidArea" to="." method="_on_lid_area_body_entered"]
 [connection signal="body_exited" from="LidArea" to="." method="_on_lid_area_body_exited"]

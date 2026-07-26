@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://b6syw5j28gu4r"
+path="res://.godot/imported/Wood Sound.mp3-f70af1d8bbcd822523589ffd6958d8de.mp3str"
+
+[deps]
+
+source_file="res://audio/sfx/Wood Sound.mp3"
+dest_files=["res://.godot/imported/Wood Sound.mp3-f70af1d8bbcd822523589ffd6958d8de.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

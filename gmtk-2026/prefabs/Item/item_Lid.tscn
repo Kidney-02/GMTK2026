@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://b74oal1y2ut2w"]
 
 [ext_resource type="PackedScene" uid="uid://de40n2qglmnir" path="res://prefabs/Item/Class/item_base.tscn" id="1_xhuj4"]
-[ext_resource type="Script" uid="uid://dgijhapyhrf73" path="res://prefabs/Item/item_lid.gd" id="2_3d358"]
+[ext_resource type="Script" uid="uid://dgijhapyhrf73" path="res://prefabs/Item/Class/item_lid.gd" id="2_3d358"]
 [ext_resource type="Texture2D" uid="uid://dmjstpuvs7nx1" path="res://art/Rocket/Rocket_Lid.tres" id="2_pua4h"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_xhuj4"]

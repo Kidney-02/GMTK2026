@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://cksk05ti2t464"]
+
+[ext_resource type="PackedScene" uid="uid://de40n2qglmnir" path="res://prefabs/Item/Class/item_base.tscn" id="1_47yir"]
+[ext_resource type="Texture2D" uid="uid://cvjcops5jb1kw" path="res://art/assets/Items/Cans.tres" id="2_3xcmu"]
+[ext_resource type="AudioStream" uid="uid://b6syw5j28gu4r" path="res://audio/sfx/Wood Sound.mp3" id="3_untyt"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_20v0f"]
+size = Vector2(76, 61)
+
+[node name="Item" unique_id=2035982705 instance=ExtResource("1_47yir")]
+
+[node name="CollisionShape2D" parent="." index="0" unique_id=2109391994]
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_20v0f")
+
+[node name="Sprite2D" parent="." index="1" unique_id=868096040]
+position = Vector2(-1, 0)
+scale = Vector2(1.5200001, 1.5199999)
+texture = ExtResource("2_3xcmu")
+
+[node name="AudioStreamPlayer2D" parent="." index="2" unique_id=1512604858]
+stream = ExtResource("3_untyt")

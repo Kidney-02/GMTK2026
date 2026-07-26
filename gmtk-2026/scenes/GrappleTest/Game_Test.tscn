@@ -1,25 +1,43 @@
 [gd_scene format=3 uid="uid://4dciwpcgsrd3"]
 
 [ext_resource type="Script" uid="uid://bghswbhaf6w0h" path="res://scenes/GrappleTest/timer.gd" id="1_1kyfl"]
+[ext_resource type="Texture2D" uid="uid://bexpndkdqk6us" path="res://art/assets/background_skies.png" id="1_22gl8"]
 [ext_resource type="PackedScene" uid="uid://b13m6f1j1jgn1" path="res://prefabs/Grappler_2/GrapplerChar.tscn" id="1_obsje"]
-[ext_resource type="Texture2D" uid="uid://i652y2hl7v8h" path="res://art/assets/rocket_mockup.png" id="1_vt08a"]
-[ext_resource type="PackedScene" uid="uid://de40n2qglmnir" path="res://prefabs/Item/Class/item_base.tscn" id="2_p8h6e"]
+[ext_resource type="Texture2D" uid="uid://jxkpshpcivqh" path="res://art/assets/background_concrete.png" id="2_eov6i"]
 [ext_resource type="PackedScene" uid="uid://cprrgbv6wg1ff" path="res://prefabs/Item/item_box.tscn" id="3_j2146"]
 [ext_resource type="PackedScene" uid="uid://nvj6n4nubwrd" path="res://prefabs/Conveyer/conveyer.tscn" id="5_rteqm"]
+[ext_resource type="AudioStream" uid="uid://cr12xs7s8qamc" path="res://audio/ticking/Ticking.wav" id="7_mmeu4"]
 [ext_resource type="PackedScene" uid="uid://bu8wl1haemth0" path="res://prefabs/Rocket/Rocket.tscn" id="7_uin1u"]
 [ext_resource type="PackedScene" uid="uid://b74oal1y2ut2w" path="res://prefabs/Item/item_Lid.tscn" id="8_kmme6"]
+[ext_resource type="Texture2D" uid="uid://b1bks0xiggqjy" path="res://art/assets/Crane/Crane.tres" id="10_x81j1"]
+[ext_resource type="Texture2D" uid="uid://8e8hmglkcjcj" path="res://art/assets/concrete.tres" id="11_vc1nw"]
+[ext_resource type="Texture2D" uid="uid://d2sbi5cpajm8d" path="res://art/assets/Crane/CraneFoot.tres" id="12_eov6i"]
+[ext_resource type="Texture2D" uid="uid://djpkrp8q7ws4e" path="res://art/assets/Grappler/GrabberBase_RopeEnds.tres" id="13_x81j1"]
+[ext_resource type="Texture2D" uid="uid://bgwo7uy2sa8xg" path="res://art/assets/Crane/CraneFlat.tres" id="14_vc1nw"]
+[ext_resource type="PackedScene" uid="uid://cksk05ti2t464" path="res://prefabs/Item/item_cans.tscn" id="15_iowfh"]
+[ext_resource type="PackedScene" uid="uid://di454lpf8moxh" path="res://prefabs/Item/item_sofa.tscn" id="16_6p2ay"]
+[ext_resource type="PackedScene" uid="uid://bilqlvug5um0d" path="res://prefabs/Item/item_TV.tscn" id="17_oydic"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_81myi"]
-size = Vector2(1809, 136)
+size = Vector2(6478, 504)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vc1nw"]
+size = Vector2(1438, 3603)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_obsje"]
-size = Vector2(198, 2174.5)
+size = Vector2(1395, 3164)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kmme6"]
-size = Vector2(1809, 136)
+size = Vector2(1775, 118)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mmeu4"]
+size = Vector2(605.25, 156)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uin1u"]
-size = Vector2(553, 138)
+size = Vector2(916.5, 156)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_h1sgq"]
+size = Vector2(236.29738, 156)
 
 [sub_resource type="Animation" id="Animation_bsurk"]
 length = 5.4945
@@ -58,18 +76,15 @@ _data = {
 
 [node name="GameTest" type="Node2D" unique_id=1722283576]
 
-[node name="BG" type="Node2D" parent="." unique_id=1847074923]
-z_index = -10
-position = Vector2(-378.41037, -355)
+[node name="BackgroundSkies" type="Sprite2D" parent="." unique_id=1508570911]
+z_index = -20
+position = Vector2(653, -1075)
+texture = ExtResource("1_22gl8")
 
-[node name="RocketMockup" type="Sprite2D" parent="BG" unique_id=2004684417]
-position = Vector2(1177, -119)
-texture = ExtResource("1_vt08a")
-
-[node name="Player" parent="." unique_id=1376512836 node_paths=PackedStringArray("item_container") instance=ExtResource("1_obsje")]
-position = Vector2(-148, -1866)
-item_container = NodePath("../Items")
-rope_max = 2100.0
+[node name="BackgroundConcrete" type="Sprite2D" parent="." unique_id=450510466]
+position = Vector2(627, -427)
+scale = Vector2(0.42057285, 0.42057285)
+texture = ExtResource("2_eov6i")
 
 [node name="Level Collision" type="StaticBody2D" parent="." unique_id=717369642]
 position = Vector2(-6.41037, 55)
@@ -77,43 +92,56 @@ collision_layer = 7
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Level Collision" unique_id=462254040]
-position = Vector2(590.5, 61)
+position = Vector2(614.4103, 331)
 shape = SubResource("RectangleShape2D_81myi")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Level Collision" unique_id=893119700]
-position = Vector2(-245, -1074.75)
-shape = SubResource("RectangleShape2D_obsje")
+position = Vector2(-1194.5896, -1535.5)
+shape = SubResource("RectangleShape2D_vc1nw")
 
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="Level Collision" unique_id=1438579887]
-position = Vector2(1460.4104, -1337)
+position = Vector2(2304.9104, -1859)
 shape = SubResource("RectangleShape2D_obsje")
 
 [node name="CollisionShape2D5" type="CollisionShape2D" parent="Level Collision" unique_id=1922917217]
-position = Vector2(2265, -298)
+position = Vector2(2232.9104, -281)
 shape = SubResource("RectangleShape2D_kmme6")
 
 [node name="CollisionShape2D4" type="CollisionShape2D" parent="Level Collision" unique_id=131632321]
-position = Vector2(493.5, 22)
+position = Vector2(509.03537, 24)
+shape = SubResource("RectangleShape2D_mmeu4")
+
+[node name="CollisionShape2D6" type="CollisionShape2D" parent="Level Collision" unique_id=405386212]
+position = Vector2(-810.3396, 13)
 shape = SubResource("RectangleShape2D_uin1u")
+
+[node name="CollisionShape2D7" type="CollisionShape2D" parent="Level Collision" unique_id=2546680]
+position = Vector2(174.02861, 83.076355)
+rotation = 2.3981605
+scale = Vector2(0.9999999, 0.9999999)
+shape = SubResource("RectangleShape2D_h1sgq")
+
+[node name="CollisionShape2D8" type="CollisionShape2D" parent="Level Collision" unique_id=1917482019]
+position = Vector2(-353.58963, 78)
+rotation = -2.1976464
+scale = Vector2(0.9999998, 0.9999998)
+shape = SubResource("RectangleShape2D_h1sgq")
+
+[node name="Player" parent="." unique_id=1376512836 node_paths=PackedStringArray("item_container") instance=ExtResource("1_obsje")]
+position = Vector2(-148, -1866)
+item_container = NodePath("../Items")
+speed_up = 700.0
+speed_down = 300.0
+rope_max = 2000.0
+drop_speed = 1200.0
 
 [node name="Items" type="Node2D" parent="." unique_id=874714478]
 position = Vector2(994.5896, -148)
 
-[node name="Item4" parent="Items" unique_id=887846603 instance=ExtResource("3_j2146")]
-position = Vector2(657, 35)
-
-[node name="Item7" parent="Items" unique_id=2108725107 instance=ExtResource("3_j2146")]
-position = Vector2(468, 39)
-
 [node name="Item11" parent="Items" unique_id=247006316 instance=ExtResource("3_j2146")]
-position = Vector2(371, 39)
-
-[node name="Item" parent="Items" unique_id=2035982705 instance=ExtResource("2_p8h6e")]
-position = Vector2(277, 37)
-rotation = 2.3378592
-
-[node name="Item3" parent="Items" unique_id=1215738426 instance=ExtResource("2_p8h6e")]
-position = Vector2(561, 29)
+position = Vector2(453.4104, 144)
+contact_monitor = false
+max_contacts_reported = 0
 
 [node name="Timer" type="Label" parent="." unique_id=1868185383]
 z_index = 99
@@ -128,14 +156,16 @@ text = "TIME"
 horizontal_alignment = 1
 vertical_alignment = 1
 script = ExtResource("1_1kyfl")
-total_time = 142.0
+total_time = 265.0
 
 [node name="Label" type="Label" parent="Timer" unique_id=1074704895]
+custom_minimum_size = Vector2(250, 250)
 layout_mode = 0
-offset_left = -4.5895996
-offset_top = 279.0
-offset_right = 299.4104
-offset_bottom = 477.0
+offset_left = 370.4104
+offset_top = -13.0
+offset_right = 674.4104
+offset_bottom = 237.0
+theme_override_constants/outline_size = 15
 theme_override_font_sizes/font_size = 29
 text = "At  least 10  Items 
 And close the Lid to survive"
@@ -154,11 +184,15 @@ E - Grab
 Q - Drop grabber to bottom
 Esc - Menu lol"
 
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Timer" unique_id=1454819404]
+stream = ExtResource("7_mmeu4")
+autoplay = true
+
 [node name="Camera2D" type="Camera2D" parent="." unique_id=103068245]
 position = Vector2(635.5896, -313)
 
 [node name="Conveyer" parent="." unique_id=116787448 instance=ExtResource("5_rteqm")]
-position = Vector2(1454.5896, -43)
+position = Vector2(1483, 40)
 
 [node name="Rocket2" parent="." unique_id=577757229 node_paths=PackedStringArray("anim_player", "timer") instance=ExtResource("7_uin1u")]
 position = Vector2(500, 0)
@@ -166,13 +200,71 @@ scale = Vector2(0.55, 0.55)
 anim_player = NodePath("../AnimationPlayer")
 timer = NodePath("../Timer")
 takeoff_delay = 1.0
+required_items = 26
 
 [node name="Lid" parent="." unique_id=1176708078 instance=ExtResource("8_kmme6")]
 position = Vector2(74.99999, -246.00002)
 rotation = 1.0266039
+contact_monitor = false
+max_contacts_reported = 0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=239015302]
 active = false
 root_motion_local = true
 libraries/ = SubResource("AnimationLibrary_kmme6")
 playback_auto_capture = false
+
+[node name="Crane" type="Sprite2D" parent="." unique_id=2141979602]
+position = Vector2(863, -1661)
+texture = ExtResource("10_x81j1")
+
+[node name="Concrete" type="Sprite2D" parent="." unique_id=2086790159]
+z_index = -2
+position = Vector2(2102, 371)
+scale = Vector2(11.76, 1)
+texture = ExtResource("11_vc1nw")
+
+[node name="Concrete" type="Sprite2D" parent="Concrete" unique_id=2146845150]
+z_index = -2
+position = Vector2(-307.56802, 40)
+scale = Vector2(-0.095193185, 1.732266)
+texture = ExtResource("11_vc1nw")
+
+[node name="CraneFoot" type="Sprite2D" parent="." unique_id=192125418]
+position = Vector2(1643, -762.00006)
+scale = Vector2(1, 1.0852017)
+texture = ExtResource("12_eov6i")
+
+[node name="GrabberBaseRopeEnds" type="Sprite2D" parent="." unique_id=1852205153]
+position = Vector2(1358.0001, -1870.0001)
+scale = Vector2(2.416986, 2.4200587)
+texture = ExtResource("13_x81j1")
+
+[node name="GrabberBaseRopeEnds2" type="Sprite2D" parent="." unique_id=1089264666]
+position = Vector2(-159.00002, -1870.0001)
+scale = Vector2(2.416986, 2.4200587)
+texture = ExtResource("13_x81j1")
+
+[node name="CraneFlat" type="Sprite2D" parent="." unique_id=199775324]
+position = Vector2(-592, -729.5)
+scale = Vector2(1, 1.617713)
+texture = ExtResource("14_vc1nw")
+
+[node name="CraneFlat" type="Sprite2D" parent="CraneFlat" unique_id=670534306]
+position = Vector2(-7.6293945e-06, -888.60016)
+rotation = 3.1415927
+scale = Vector2(-1, 1)
+texture = ExtResource("14_vc1nw")
+
+[node name="Item" parent="." unique_id=2035982705 instance=ExtResource("15_iowfh")]
+position = Vector2(1550, -16)
+
+[node name="Item2" parent="." unique_id=77392926 instance=ExtResource("16_6p2ay")]
+position = Vector2(1305, -5)
+
+[node name="Item3" parent="." unique_id=53556283 instance=ExtResource("17_oydic")]
+position = Vector2(1535, -79)
+
+[connection signal="body_shape_entered" from="Items/Item11" to="Items/Item11" method="_on_body_shape_entered"]
+[connection signal="finished" from="Timer/AudioStreamPlayer" to="Timer" method="_on_audio_stream_player_finished"]
+[connection signal="body_shape_entered" from="Lid" to="Lid" method="_on_body_shape_entered"]

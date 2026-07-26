@@ -5,8 +5,18 @@ extends Node2D
 ##########
 ## Possible Items
 var spawnable = [
-	preload("res://prefabs/Item/Class/item_base.tscn"),
+	#preload("res://prefabs/Item/Class/item_base.tscn"),
+	
+	preload("res://prefabs/Item/item_aquarium.tscn"),
+	preload("res://prefabs/Item/item_bomb.tscn"),
 	preload("res://prefabs/Item/item_box.tscn"),
+	preload("res://prefabs/Item/item_cans.tscn"),
+	preload("res://prefabs/Item/item_creatures.tscn"),
+	preload("res://prefabs/Item/item_grandma.tscn"),
+	preload("res://prefabs/Item/item_piano.tscn"),
+	preload("res://prefabs/Item/item_small_bomb.tscn"),
+	preload("res://prefabs/Item/item_sofa.tscn"),
+	preload("res://prefabs/Item/item_TV.tscn"),
 
 ]
 	

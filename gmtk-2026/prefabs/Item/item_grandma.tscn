@@ -1,0 +1,31 @@
+[gd_scene format=3 uid="uid://cyxg6oubaaro8"]
+
+[ext_resource type="PackedScene" uid="uid://de40n2qglmnir" path="res://prefabs/Item/Class/item_base.tscn" id="1_dd8tn"]
+[ext_resource type="Texture2D" uid="uid://c2s66gslutl0x" path="res://art/assets/Items/Grandma.tres" id="2_6kb5w"]
+[ext_resource type="AudioStream" uid="uid://cupht6iqagyi7" path="res://audio/sfx/Piano_slam.wav" id="3_6kb5w"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_75e4g"]
+radius = 27.0
+height = 86.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_464o0"]
+radius = 13.0
+height = 44.0
+
+[node name="Item" unique_id=2035982705 instance=ExtResource("1_dd8tn")]
+
+[node name="CollisionShape2D" parent="." index="0" unique_id=2109391994]
+position = Vector2(0, 13)
+shape = SubResource("CapsuleShape2D_75e4g")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="." index="1" unique_id=1384135353]
+position = Vector2(-1, -33)
+shape = SubResource("CapsuleShape2D_464o0")
+
+[node name="Sprite2D" parent="." index="2" unique_id=868096040]
+position = Vector2(-4.7683716e-07, 1.1368684e-13)
+scale = Vector2(1.85375, 1.8537498)
+texture = ExtResource("2_6kb5w")
+
+[node name="AudioStreamPlayer2D" parent="." index="3" unique_id=1512604858]
+stream = ExtResource("3_6kb5w")

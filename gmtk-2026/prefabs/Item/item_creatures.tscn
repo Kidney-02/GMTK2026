@@ -1,0 +1,31 @@
+[gd_scene format=3 uid="uid://w10skt8n1mqb"]
+
+[ext_resource type="PackedScene" uid="uid://de40n2qglmnir" path="res://prefabs/Item/Class/item_base.tscn" id="1_xxt23"]
+[ext_resource type="Texture2D" uid="uid://chgd0bkuw24qd" path="res://art/assets/Items/Creatures.tres" id="2_xxt23"]
+[ext_resource type="AudioStream" uid="uid://b6syw5j28gu4r" path="res://audio/sfx/Wood Sound.mp3" id="3_h1527"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_75e4g"]
+radius = 17.04906
+height = 56.443214
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_qyfon"]
+radius = 16.0
+
+[node name="Item" unique_id=2035982705 instance=ExtResource("1_xxt23")]
+
+[node name="CollisionShape2D" parent="." index="0" unique_id=2109391994]
+position = Vector2(0, 9.000001)
+rotation = 1.1444967
+shape = SubResource("CapsuleShape2D_75e4g")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="." index="1" unique_id=2124324719]
+position = Vector2(-3, -10)
+shape = SubResource("CircleShape2D_qyfon")
+
+[node name="Sprite2D" parent="." index="2" unique_id=868096040]
+position = Vector2(-4.7683716e-07, 1.1368684e-13)
+scale = Vector2(1.85375, 1.8537498)
+texture = ExtResource("2_xxt23")
+
+[node name="AudioStreamPlayer2D" parent="." index="3" unique_id=1512604858]
+stream = ExtResource("3_h1527")

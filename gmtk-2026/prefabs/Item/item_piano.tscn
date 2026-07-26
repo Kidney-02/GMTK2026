@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://b3hjhb6qepjdq"]
+
+[ext_resource type="PackedScene" uid="uid://de40n2qglmnir" path="res://prefabs/Item/Class/item_base.tscn" id="1_pp81p"]
+[ext_resource type="Texture2D" uid="uid://betotcjjm8ush" path="res://art/assets/Items/Piano.tres" id="2_pp81p"]
+[ext_resource type="AudioStream" uid="uid://cupht6iqagyi7" path="res://audio/sfx/Piano_slam.wav" id="3_vas53"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vas53"]
+size = Vector2(49, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_20v0f"]
+size = Vector2(115, 113)
+
+[node name="Item" unique_id=2035982705 instance=ExtResource("1_pp81p")]
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="." index="0" unique_id=1292777971]
+position = Vector2(-24.5, -57)
+shape = SubResource("RectangleShape2D_vas53")
+
+[node name="CollisionShape2D" parent="." index="1" unique_id=2109391994]
+position = Vector2(-2.5, 9.5)
+shape = SubResource("RectangleShape2D_20v0f")
+
+[node name="Sprite2D" parent="." index="2" unique_id=868096040]
+scale = Vector2(1.3191488, 1.15)
+texture = ExtResource("2_pp81p")
+
+[node name="AudioStreamPlayer2D" parent="." index="3" unique_id=1512604858]
+stream = ExtResource("3_vas53")

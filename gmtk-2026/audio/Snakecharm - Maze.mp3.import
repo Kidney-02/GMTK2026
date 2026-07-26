@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://bkyg7i7eu5mq3"
+path="res://.godot/imported/Snakecharm - Maze.mp3-00fe3f723dd1a1b6fc3236cabc56d519.mp3str"
+
+[deps]
+
+source_file="res://audio/Snakecharm - Maze.mp3"
+dest_files=["res://.godot/imported/Snakecharm - Maze.mp3-00fe3f723dd1a1b6fc3236cabc56d519.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

@@ -1,0 +1,31 @@
+[gd_scene format=3 uid="uid://cffg81gj7vxsn"]
+
+[ext_resource type="PackedScene" uid="uid://de40n2qglmnir" path="res://prefabs/Item/Class/item_base.tscn" id="1_sd6c2"]
+[ext_resource type="Texture2D" uid="uid://c3lvtkq7ybpjo" path="res://art/assets/Items/Bomb.tres" id="2_qcoak"]
+[ext_resource type="AudioStream" uid="uid://c0175bdc4ysed" path="res://audio/sfx/explosion.wav" id="3_sd6c2"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_20v0f"]
+size = Vector2(82.77304, 37.5)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_cqknp"]
+radius = 36.459553
+height = 104.0
+
+[node name="Item" unique_id=2035982705 instance=ExtResource("1_sd6c2")]
+
+[node name="CollisionShape2D" parent="." index="0" unique_id=2109391994]
+position = Vector2(1, 50.75)
+scale = Vector2(1.0148232, 1)
+shape = SubResource("RectangleShape2D_20v0f")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="." index="1" unique_id=411678036]
+position = Vector2(1, -16)
+scale = Vector2(1.0148232, 1)
+shape = SubResource("CapsuleShape2D_cqknp")
+
+[node name="Sprite2D" parent="." index="2" unique_id=868096040]
+scale = Vector2(1.3191488, 1.15)
+texture = ExtResource("2_qcoak")
+
+[node name="AudioStreamPlayer2D" parent="." index="3" unique_id=1512604858]
+stream = ExtResource("3_sd6c2")

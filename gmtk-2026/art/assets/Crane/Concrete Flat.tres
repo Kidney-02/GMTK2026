@@ -1,0 +1,7 @@
+[gd_resource type="AtlasTexture" format=3 uid="uid://dpyjy8pe3dcyr"]
+
+[ext_resource type="Texture2D" uid="uid://jxkpshpcivqh" path="res://art/assets/background_concrete.png" id="1_akmu0"]
+
+[resource]
+atlas = ExtResource("1_akmu0")
+region = Rect2(1069.4464, 2556, 1355.5184, 516)

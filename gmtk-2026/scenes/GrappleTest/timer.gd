@@ -9,9 +9,17 @@ var held_items: int = 0
 @onready var player = $"../Player"
 @onready var rocket = $"../Rocket2"
 
+@onready var audio_player = $AudioStreamPlayer
+
+var timer_slow = preload("res://audio/ticking/Ticking.wav")
+var timer_fast = preload("res://audio/ticking/fast_ticking.mp3")
+var time_speedup:bool = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	
+	$Label.text = "Collect %s Items and put the lid on to survive" % str(rocket.required_items)
+	
 		
 	pass # Replace with function body.
 
@@ -32,10 +40,16 @@ func _process(delta: float) -> void:
 	elif total_time > 0.:
 		display_time = "%02d : %02d : %0.3f" 
 		display_time = display_time % [time["minutes"] , time["seconds"] , time["miliseconds"]]
+		if not time_speedup :
+			time_speedup = true
+			audio_player.stream = timer_fast
+			audio_player.play()
+			
 	elif total_time <= 0.:
 		total_time = 0
 		display_time = "%02d : %02d" 
 		display_time = display_time % [0 , 0]
+		audio_player.stop()
 		if rocket:
 			rocket.launch_rocket()
 	
@@ -100,4 +114,10 @@ func _on_rocket_body_exited(body: Node2D) -> void:
 	pass # Replace with function body.
 	
 	
+	pass # Replace with function body.
+
+
+func _on_audio_stream_player_finished() -> void:
+	if total_time > 0.:
+		audio_player.play()
 	pass # Replace with function body.
