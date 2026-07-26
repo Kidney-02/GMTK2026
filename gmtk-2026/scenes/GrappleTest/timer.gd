@@ -8,6 +8,7 @@ var held_items: int = 0
 
 @onready var player = $"../Player"
 @onready var rocket = $"../Rocket2"
+@onready var item_label = $"Items Packed"
 
 @onready var audio_player = $AudioStreamPlayer
 
@@ -19,7 +20,7 @@ var time_speedup:bool = false
 func _ready() -> void:
 	
 	$Label.text = "Collect %s Items and put the lid on to survive" % str(rocket.required_items)
-	
+	item_counter(0)
 		
 	pass # Replace with function body.
 
@@ -69,6 +70,12 @@ func launch(win:bool):
 	#if event.is_action_pressed("escape"):
 		#end_screen.visible = not end_screen.visible
 	#pass
+
+func item_counter(count:int):
+	item_label.text = str("ITEMS PACKED:  \n",  count)
+	
+	pass
+
 
 ###############################################################################
 func format_time(_seconds:float) -> Dictionary:

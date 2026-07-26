@@ -1,0 +1,8 @@
+[gd_resource type="AtlasTexture" format=3 uid="uid://dj14tk7r4eomb"]
+
+[ext_resource type="Texture2D" uid="uid://ddvwx75uc0yt5" path="res://art/assets/context_menu.png" id="1_woons"]
+
+[resource]
+resource_local_to_scene = true
+atlas = ExtResource("1_woons")
+region = Rect2(378.4987, 136.19687, 191.7844, 78.42859)

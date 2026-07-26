@@ -1,19 +1,26 @@
 [gd_scene format=3 uid="uid://pcq8rppqacnt"]
 
 [ext_resource type="Script" uid="uid://bswoidoniuabx" path="res://scenes/Menus/main_menu.gd" id="1_xu3ct"]
+[ext_resource type="Texture2D" uid="uid://dpnbsxocdoxen" path="res://art/assets/full menu.png" id="2_1wo58"]
 [ext_resource type="Texture2D" uid="uid://dhcwybhoxgwhe" path="res://icon.svg" id="2_x5no6"]
+[ext_resource type="Texture2D" uid="uid://ddvwx75uc0yt5" path="res://art/assets/context_menu.png" id="3_1wo58"]
+[ext_resource type="Texture2D" uid="uid://bk2ndm8j4umnt" path="res://art/GMTK Game Jam 2026 Small Logo.png" id="3_x5no6"]
+[ext_resource type="Texture2D" uid="uid://bmafkqox7i187" path="res://art/Menu/frame.tres" id="4_8w4bl"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_y2rfe"]
-content_margin_left = 0.0
-content_margin_top = 0.0
-content_margin_right = 0.0
-content_margin_bottom = 0.0
-bg_color = Color(0.27058825, 0.5411765, 0.101960786, 1)
-corner_radius_top_left = 3
-corner_radius_top_right = 3
-corner_radius_bottom_right = 3
-corner_radius_bottom_left = 3
-corner_detail = 5
+[sub_resource type="AtlasTexture" id="AtlasTexture_2cnol"]
+resource_local_to_scene = true
+atlas = ExtResource("3_1wo58")
+region = Rect2(388.81952, 142.13423, 181.46356, 72.49123)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1wo58"]
+resource_local_to_scene = true
+atlas = ExtResource("3_1wo58")
+region = Rect2(381.60983, 137.89325, 193.81265, 82.27496)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1y7b6"]
+resource_local_to_scene = true
+atlas = ExtResource("3_1wo58")
+region = Rect2(378.4987, 136.19687, 191.7844, 78.42859)
 
 [node name="MainMenu" type="Control" unique_id=1271213195]
 layout_mode = 3
@@ -24,14 +31,16 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_xu3ct")
 
-[node name="Panel" type="Panel" parent="." unique_id=701381661]
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1078737845]
+texture_filter = 1
+texture_repeat = 3
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_y2rfe")
+texture = ExtResource("2_1wo58")
 
 [node name="Play" type="TextureButton" parent="." unique_id=1771834017]
 layout_mode = 1
@@ -41,20 +50,21 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -150.0
-offset_top = -37.5
+offset_top = -60.0
 offset_right = 150.0
-offset_bottom = 37.5
+offset_bottom = 60.0
 grow_horizontal = 2
 grow_vertical = 2
 pivot_offset_ratio = Vector2(0.5, 0.5)
-texture_normal = ExtResource("2_x5no6")
-texture_pressed = ExtResource("2_x5no6")
-texture_hover = ExtResource("2_x5no6")
+texture_normal = SubResource("AtlasTexture_2cnol")
+texture_pressed = SubResource("AtlasTexture_1wo58")
+texture_hover = SubResource("AtlasTexture_1y7b6")
 texture_disabled = ExtResource("2_x5no6")
 texture_focused = ExtResource("2_x5no6")
 stretch_mode = 0
 
 [node name="Label" type="Label" parent="Play" unique_id=1367726726]
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -74,47 +84,14 @@ text = "PLAY"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Quit" type="TextureButton" parent="." unique_id=2114917251]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = 155.0
-offset_top = 145.0
-offset_right = 367.0
-offset_bottom = 273.0
-grow_horizontal = 2
-grow_vertical = 2
-pivot_offset_ratio = Vector2(0.5, 0.5)
-texture_normal = ExtResource("2_x5no6")
-texture_pressed = ExtResource("2_x5no6")
-texture_hover = ExtResource("2_x5no6")
-texture_disabled = ExtResource("2_x5no6")
-texture_focused = ExtResource("2_x5no6")
-stretch_mode = 0
+[node name="Frame" type="Sprite2D" parent="." unique_id=266139054]
+position = Vector2(145, 125.5)
+scale = Vector2(3.4166667, 2.814286)
+texture = ExtResource("4_8w4bl")
 
-[node name="Label" type="Label" parent="Quit" unique_id=1439995913]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -99.5
-offset_top = -57.0
-offset_right = 99.5
-offset_bottom = 57.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_colors/font_color = Color(1, 0, 0, 1)
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 50
-theme_override_font_sizes/font_size = 59
-text = "QUIT"
-horizontal_alignment = 1
-vertical_alignment = 1
+[node name="GmtkGameJam2026SmallLogo" type="Sprite2D" parent="." unique_id=1201487128]
+position = Vector2(142.06, 127.00001)
+scale = Vector2(0.32400003, 0.32400006)
+texture = ExtResource("3_x5no6")
 
 [connection signal="pressed" from="Play" to="." method="_on_play_pressed"]
-[connection signal="pressed" from="Quit" to="." method="_on_quit_pressed"]

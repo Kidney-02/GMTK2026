@@ -2,18 +2,37 @@
 
 [ext_resource type="Texture2D" uid="uid://dhcwybhoxgwhe" path="res://icon.svg" id="1_06gyh"]
 [ext_resource type="Script" uid="uid://c0lmkovxyfokn" path="res://scenes/Menus/end_screen.gd" id="1_afkq0"]
+[ext_resource type="Texture2D" uid="uid://cbtq4kku0exdj" path="res://art/Menu/btn_Restart.tres" id="2_favm1"]
+[ext_resource type="Texture2D" uid="uid://ddvwx75uc0yt5" path="res://art/assets/context_menu.png" id="3_7auwa"]
+[ext_resource type="Texture2D" uid="uid://bafc6hw6o86i8" path="res://art/Menu/btn_Menu.tres" id="4_7auwa"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_afkq0"]
 content_margin_left = 0.0
 content_margin_top = 0.0
 content_margin_right = 0.0
 content_margin_bottom = 0.0
-bg_color = Color(0.2652, 0.52, 0.26944664, 0.6)
+bg_color = Color(0.5923613, 0.3299175, 0, 0.23529412)
 corner_radius_top_left = 3
 corner_radius_top_right = 3
 corner_radius_bottom_right = 3
 corner_radius_bottom_left = 3
 corner_detail = 5
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0rdqs"]
+atlas = ExtResource("3_7auwa")
+region = Rect2(380.33752, 295.6576, 190.1532, 77.41974)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_heehs"]
+atlas = ExtResource("3_7auwa")
+region = Rect2(383.53503, 295.46878, 191.88745, 82.88788)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cuv4d"]
+atlas = ExtResource("3_7auwa")
+region = Rect2(385.4267, 218.8959, 184.85638, 74.52371)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o8t2q"]
+atlas = ExtResource("3_7auwa")
+region = Rect2(385.2414, 219.06354, 189.33289, 77.86633)
 
 [node name="CanvasLayer" type="CanvasLayer" unique_id=1842237333]
 
@@ -42,21 +61,22 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -157.0
-offset_top = -202.0
-offset_right = 143.0
-offset_bottom = -74.0
+offset_left = -162.0
+offset_top = -195.0
+offset_right = 138.0
+offset_bottom = -67.0
 grow_horizontal = 2
 grow_vertical = 2
 pivot_offset_ratio = Vector2(0.5, 0.5)
-texture_normal = ExtResource("1_06gyh")
-texture_pressed = ExtResource("1_06gyh")
-texture_hover = ExtResource("1_06gyh")
+texture_normal = ExtResource("2_favm1")
+texture_pressed = SubResource("AtlasTexture_0rdqs")
+texture_hover = SubResource("AtlasTexture_heehs")
 texture_disabled = ExtResource("1_06gyh")
 texture_focused = ExtResource("1_06gyh")
 stretch_mode = 0
 
 [node name="Label" type="Label" parent="End Screen/Restart" unique_id=1178098116]
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -83,21 +103,22 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -150.0
-offset_top = -64.0
-offset_right = 150.0
-offset_bottom = 64.0
+offset_left = -141.0
+offset_top = -49.0
+offset_right = 159.0
+offset_bottom = 79.0
 grow_horizontal = 2
 grow_vertical = 2
 pivot_offset_ratio = Vector2(0.5, 0.5)
-texture_normal = ExtResource("1_06gyh")
-texture_pressed = ExtResource("1_06gyh")
-texture_hover = ExtResource("1_06gyh")
+texture_normal = ExtResource("4_7auwa")
+texture_pressed = SubResource("AtlasTexture_cuv4d")
+texture_hover = SubResource("AtlasTexture_o8t2q")
 texture_disabled = ExtResource("1_06gyh")
 texture_focused = ExtResource("1_06gyh")
 stretch_mode = 0
 
 [node name="Label" type="Label" parent="End Screen/MainMenu" unique_id=26978234]
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -117,48 +138,5 @@ text = "MainMenu"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Quit" type="TextureButton" parent="End Screen" unique_id=769269608]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = 155.0
-offset_top = 145.0
-offset_right = 367.0
-offset_bottom = 273.0
-grow_horizontal = 2
-grow_vertical = 2
-pivot_offset_ratio = Vector2(0.5, 0.5)
-texture_normal = ExtResource("1_06gyh")
-texture_pressed = ExtResource("1_06gyh")
-texture_hover = ExtResource("1_06gyh")
-texture_disabled = ExtResource("1_06gyh")
-texture_focused = ExtResource("1_06gyh")
-stretch_mode = 0
-
-[node name="Label" type="Label" parent="End Screen/Quit" unique_id=1295475184]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -99.5
-offset_top = -57.0
-offset_right = 99.5
-offset_bottom = 57.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_colors/font_color = Color(1, 0, 0, 1)
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 50
-theme_override_font_sizes/font_size = 59
-text = "QUIT"
-horizontal_alignment = 1
-vertical_alignment = 1
-
 [connection signal="pressed" from="End Screen/Restart" to="End Screen" method="_on_restart_pressed"]
 [connection signal="pressed" from="End Screen/MainMenu" to="End Screen" method="_on_main_menu_pressed"]
-[connection signal="pressed" from="End Screen/Quit" to="End Screen" method="_on_quit_pressed"]

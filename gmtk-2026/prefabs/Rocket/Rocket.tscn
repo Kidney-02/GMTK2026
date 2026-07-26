@@ -79,5 +79,7 @@ debug_color = Color(0.8073615, 0.41720814, 3.85046e-07, 0.41960785)
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1424142516]
 stream = ExtResource("4_m3e8p")
 
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]
 [connection signal="body_entered" from="LidArea" to="." method="_on_lid_area_body_entered"]
 [connection signal="body_exited" from="LidArea" to="." method="_on_lid_area_body_exited"]

@@ -156,7 +156,7 @@ text = "TIME"
 horizontal_alignment = 1
 vertical_alignment = 1
 script = ExtResource("1_1kyfl")
-total_time = 265.0
+total_time = 264.0
 
 [node name="Label" type="Label" parent="Timer" unique_id=1074704895]
 custom_minimum_size = Vector2(250, 250)
@@ -187,6 +187,19 @@ Esc - Menu lol"
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Timer" unique_id=1454819404]
 stream = ExtResource("7_mmeu4")
 autoplay = true
+
+[node name="Items Packed" type="Label" parent="Timer" unique_id=1247035277]
+layout_mode = 0
+offset_left = -18.5896
+offset_top = 111.0
+offset_right = 205.4104
+offset_bottom = 182.0
+theme_override_colors/font_outline_color = Color(0.78, 0.26000002, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_font_sizes/font_size = 32
+text = "ITEMS PACKED"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=103068245]
 position = Vector2(635.5896, -313)

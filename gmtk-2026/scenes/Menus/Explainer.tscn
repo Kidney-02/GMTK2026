@@ -1,0 +1,81 @@
+[gd_scene format=3 uid="uid://yjdt4fa1j552"]
+
+[ext_resource type="Script" uid="uid://d302ufhutrnnp" path="res://scenes/Menus/explainer.gd" id="1_n7wwr"]
+[ext_resource type="Texture2D" uid="uid://cc3ef17l7xf1l" path="res://art/assets/explpainer.png" id="2_n7wwr"]
+[ext_resource type="Texture2D" uid="uid://ddvwx75uc0yt5" path="res://art/assets/context_menu.png" id="3_isn3m"]
+[ext_resource type="Texture2D" uid="uid://dhcwybhoxgwhe" path="res://icon.svg" id="4_scxvd"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2cnol"]
+resource_local_to_scene = true
+atlas = ExtResource("3_isn3m")
+region = Rect2(388.81952, 142.13423, 181.46356, 72.49123)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1wo58"]
+resource_local_to_scene = true
+atlas = ExtResource("3_isn3m")
+region = Rect2(381.60983, 137.89325, 193.81265, 82.27496)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1y7b6"]
+resource_local_to_scene = true
+atlas = ExtResource("3_isn3m")
+region = Rect2(378.4987, 136.19687, 191.7844, 78.42859)
+
+[node name="MainMenu" type="Control" unique_id=1271213195]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_n7wwr")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1078737845]
+texture_filter = 1
+texture_repeat = 3
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_n7wwr")
+
+[node name="Play" type="TextureButton" parent="." unique_id=1771834017]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 110.0
+offset_top = -304.0
+offset_right = 410.0
+offset_bottom = -184.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset_ratio = Vector2(0.5, 0.5)
+texture_normal = SubResource("AtlasTexture_2cnol")
+texture_pressed = SubResource("AtlasTexture_1wo58")
+texture_hover = SubResource("AtlasTexture_1y7b6")
+texture_disabled = ExtResource("4_scxvd")
+texture_focused = ExtResource("4_scxvd")
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="." unique_id=1192021354]
+custom_minimum_size = Vector2(0.11, 0.255)
+layout_mode = 0
+offset_left = 109.0
+offset_top = 83.0
+offset_right = 562.0
+offset_bottom = 616.0
+theme_override_colors/font_color = Color(1, 0.5137255, 0.23529412, 1)
+theme_override_colors/font_outline_color = Color(1, 0.5137255, 0.23529412, 1)
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/font_size = 32
+text = "Quickly, you have to pack the Rocket before we leave.
+Also don't forget to place the nose of the rocket on top.
+We need at least 26 items inside, doesn't matter what kind.
+And be fast, the countdown already started!!!!!!!!!!!"
+autowrap_mode = 2
+
+[connection signal="pressed" from="Play" to="." method="_on_play_pressed"]

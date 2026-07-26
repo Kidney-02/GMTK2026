@@ -16,6 +16,8 @@ var delay:float = takeoff_delay
 var kill_delay:float = 0.0
 var launched:bool = false
 
+var items = []
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass # Replace with function body.
@@ -48,15 +50,18 @@ func launch_rocket():
 	print("Launching")
 	if launched:
 		return
-	var overlapping = self.get_overlapping_bodies()
-	var items = []
-	for item in overlapping:
-		if item is Item:
-			item.freeze = true
-			item.reparent(self)
-			items.append(item)
-	if lid:
-		lid.freeze = true
+	#var overlapping = self.get_overlapping_bodies()
+	#overlapping.append(lid)
+	var freeze_items = items.duplicate()
+	freeze_items.append(lid)
+	for item in freeze_items:
+		item.freeze = true
+		item.reparent(self)
+		#if item is Lid:
+			#continue
+		#items.append(item)
+	#if lid:
+		#lid.freeze = true
 	
 	$Rocket_Collision.set_collision_layer_value(2, false)
 	$Rocket_Collision.set_collision_layer_value(1, false)
@@ -76,13 +81,13 @@ func launch_rocket():
 	
 	
 func check_win_codition(_items:Array) -> bool:
-	if _items.size() >= required_items:
+	
+	
+	if _items.size() >= required_items and lid:
 		return true
 	return false
 	
-
 ######################
-
 func _on_lid_area_body_entered(body: Node2D) -> void:
 	if body is Lid:
 		lid = body
@@ -92,7 +97,19 @@ func _on_lid_area_body_entered(body: Node2D) -> void:
 
 func _on_lid_area_body_exited(body: Node2D) -> void:
 	if body is Lid:
-
 		lid_placed = false
 	pass # Replace with function body.
 	
+
+func _on_body_entered(body: Node2D) -> void:
+	if body is Item and body is not Lid:
+		items.append(body)
+		timer.item_counter(items.size())
+	pass # Replace with function body.
+
+
+func _on_body_exited(body: Node2D) -> void:
+	if body in items:
+		items.erase(body)
+		timer.item_counter(items.size())
+	pass # Replace with function body.
